@@ -15,7 +15,6 @@ class User:
 class Patient:
     def __init__(self, mrn): # what does mrn mean?(UML diagram)
         self.mrn = mrn
-        pass
 
 class CareStaff:
     def __init__(self, speciality):
