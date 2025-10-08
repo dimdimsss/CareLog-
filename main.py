@@ -1,5 +1,9 @@
 import streamlit as st
+import json #might not be necessary but just in case
 
+#so we can use stuff from them (folder.file.function/class)
+import app 
+import gui
 
 class CareLog:
     def __init__(self, patients_name, log, date_and_time):
