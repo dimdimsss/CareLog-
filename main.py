@@ -42,4 +42,5 @@ option = st.selectbox(
     'Choose a User type:',
     ['CareStaff', 'Patient', 'Clerk', 'Admin']
 )
-st.markdown("you chose", option)
+
+st.write("you chose", option)
