@@ -5,7 +5,7 @@ import json #might not be necessary but just in case
 import app 
 import gui
 
-class CareLog:
+class CareLog: # dims do we still need this here?
     def __init__(self, patients_name, log, date_and_time):
         self.patients_name = patients_name
         self.log = log
@@ -44,3 +44,4 @@ option = st.selectbox(
 )
 
 st.write("you chose", option)
+st.write("[streamlit and logic stuff happening and then respective dashboard loaded from gui]")
