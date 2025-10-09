@@ -36,3 +36,5 @@ option = st.selectbox(
 
 st.write("you chose", option)
 st.write("[streamlit and logic stuff happening and then respective dashboard loaded from gui]")
+
+gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported and then laucnehd
