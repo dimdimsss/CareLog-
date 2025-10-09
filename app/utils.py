@@ -1,3 +1,6 @@
+#"utility" file for functions. we can organise classes and other function better in other files later on
+import json
+
 def testfunction():
     print("function is working!")
 
