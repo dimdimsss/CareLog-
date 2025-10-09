@@ -1,0 +1,16 @@
+def testfunction():
+    print("function is working!")
+
+class User:
+    def __init__(self, user_id, name, role):
+        self.user_id = user_id
+        self.name = name
+        self.role = role
+
+class Patient:
+    def __init__(self, mrn): # what does mrn mean?(UML diagram)
+        self.mrn = mrn
+
+class CareStaff:
+    def __init__(self, speciality):
+        self.speciality = speciality

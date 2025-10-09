@@ -12,20 +12,11 @@ class CareLog: # dims do we still need this here?
         self.date_and_time = date_and_time
 
 
-#just throwing in some of the main classes, we can move them accordingly once we've decided on a folder/file structure
-class User:
-    def __init__(self, user_id, name, role):
-        self.user_id = user_id
-        self.name = name
-        self.role = role
+app.utils.testfunction() # testing imports
 
-class Patient:
-    def __init__(self, mrn): # what does mrn mean?(UML diagram)
-        self.mrn = mrn
-
-class CareStaff:
-    def __init__(self, speciality):
-        self.speciality = speciality
+app.utils.User
+app.utils.CareStaff
+app.utils.Patient
 
 
 
