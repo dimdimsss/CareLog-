@@ -32,7 +32,7 @@ class CareStaff:
 
 #____Main program start goes below here____
 
-st.header("Welcome to Carlog!") # im testing to see if streamlit is imported correctly can you guys check to see if this is showing on your end. works for me but i have path issues so it might be different - Aidan
+st.header("Welcome to Carelog!") # im testing to see if streamlit is imported correctly can you guys check to see if this is showing on your end. works for me but i have path issues so it might be different - Aidan
 st.subheader("Login")
 
 #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
