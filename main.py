@@ -28,44 +28,6 @@ app.utils.TestClass
 login_page = st.empty()
 dashboard_page = st.empty()
 
-# # Initialize session state
-# if "current_user" not in st.session_state:
-#     st.session_state.current_user = None
-# if "logged_in" not in st.session_state:
-#     st.session_state.logged_in = False
-
-# # Only show login page if not logged in
-# if not st.session_state.logged_in:
-#     with login_page.container():
-#         st.header("Welcome to Carelog!")
-#         st.subheader("Login")
-
-#         user_name = st.text_input("Enter your user ID:")
-
-#         if user_name:
-#             current_user = app.utils.load_user(user_name)
-#             if current_user is not None:
-#                 password = st.text_input("Enter your password:", type="password")
-
-#                 if password:
-#                     if password == current_user.password:
-#                         # Save login state and current user in session
-#                         st.session_state.current_user = current_user
-#                         st.session_state.logged_in = True
-#                     else:
-#                         st.error("Incorrect password")
-#             else:
-#                 st.warning("User ID does not exist")
-
-# # If logged in, show the dashboard based on user_id
-# if st.session_state.logged_in:
-#     login_page.empty()  # clear login page
-#     with dashboard_page.container():
-#         if st.session_state.current_user.user_id == "cs001":
-#             gui.carestaff_dashboard.test_launch()
-#         else:
-#             st.write(f"Dashboard for {st.session_state.current_user.name} (user_id: {st.session_state.current_user.user_id}) not implemented yet")
-
 if "current_user" not in st.session_state:
     st.session_state.current_user = None
 if "logged_in" not in st.session_state:
