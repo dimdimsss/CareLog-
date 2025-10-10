@@ -32,7 +32,7 @@ st.subheader("Login")
 
 #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
 option = st.selectbox(
-    'Choose a User type (this does nothgnig right now):',
+    'Choose a User type (this does nothing right now):',
     ['CareStaff', 'Patient', 'Clerk', 'Admin']
 )
 
