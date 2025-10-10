@@ -41,6 +41,7 @@ with login_page.container():
     st.write("You chose", option)
 
     current_user = app.utils.load_user("default")
+    current_user.password = "default"
 
     user_name = st.text_input("Enter your user ID:")
 
