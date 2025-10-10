@@ -27,6 +27,8 @@ app.utils.TestClass
 
 login_page = st.empty()
 
+dashboard_page = st.empty()
+
 with login_page.container():
     st.header("Welcome to Carelog!") # im testing to see if streamlit is imported correctly can you guys check to see if this is showing on your end. works for me but i have path issues so it might be different - Aidan
     st.subheader("Login")
@@ -34,6 +36,7 @@ with login_page.container():
     option = st.selectbox('Choose a User type (this does nothing right now):', ['CareStaff', 'Patient', 'Clerk', 'Admin']) #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
     st.write("You chose", option)
 
-    if st.button("Access CareStaff dashboard"):
+    if st.button("Access CareStaff dashboard (will add authentication later)"):
         login_page.empty()  # clears everything
-        gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
+        with dashboard_page.container:
+            gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
