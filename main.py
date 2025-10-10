@@ -46,6 +46,7 @@ with login_page.container():
         if password == current_user.password:
             login_page.empty()
             with dashboard_page.container():
+                login_page.empty()
                 gui.carestaff_dashboard.test_launch()
 
     # if "current_user" not in st.session_state:
