@@ -6,7 +6,7 @@
 
     streamlit run main.py
 
-    OR:
+OR:
 
     python -m streamlit run main.py
 
