@@ -1,4 +1,4 @@
-# CareLog Program!
+# CareLog Program
 
 ### How to run CareLog
 
