@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "user_id": "cs001",
+      "password": "1234",
+      "name": "Dr. Jane Smith",
+      "role": "CareStaff"
+    }
+  ]
+}
