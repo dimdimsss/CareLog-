@@ -15,8 +15,8 @@ class CareLog: # dims do we still need this here?
 #___testing things___
 app.utils.testfunction() # testing imports
 
-current_user = app.utils.load_user("cs001")
-print(current_user)
+# current_user = app.utils.load_user("cs001")
+# print(current_user)
 
 app.utils.TestClass
 
@@ -35,6 +35,26 @@ with login_page.container():
 
     option = st.selectbox('Choose a User type (this does nothing right now):', ['CareStaff', 'Patient', 'Clerk', 'Admin']) #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
     st.write("You chose", option)
+
+
+
+    user_name = st.text_input("Enter your user ID:")
+
+    current_user = app.utils.load_user(user_name)
+
+    if "current_user" not in st.session_state:
+        st.session_state.current_user = app.utils.load_user(user_name)
+
+    password = st.text_input("Enter your password:")
+
+    if password == current_user.password:
+        login_page.empty()  # clears everything
+        with dashboard_page.container():
+            gui.carestaff_dashboard.test_launch()
+
+        
+
+
 
     if st.button("Access CareStaff dashboard (will add authentication later)"):
         login_page.empty()  # clears everything
