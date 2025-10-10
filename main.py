@@ -5,11 +5,16 @@ import json #might not be necessary but just in case
 import app 
 import gui
 
+
+
+
 class CareLog: # dims do we still need this here?
     def __init__(self, patients_name, log, date_and_time):
         self.patients_name = patients_name
         self.log = log
         self.date_and_time = date_and_time
+
+        
 
 
 #___testing things___
