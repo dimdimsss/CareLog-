@@ -3,4 +3,4 @@ import app
 import streamlit as st
 
 def test_launch():
-    st.write("carestaff dashboard successfully launched")
+    st.write("CareStaff dashboard successfully launched (will add functions later)")
