@@ -7,5 +7,5 @@ def launch_carestaff_dashboard():
 
     st.header(f"{current_user.role} Dashboard")
     st.write("Dashboard successfully loaded")
-    st.write(f"Hello, {current_user.name}, welcome to the {current_user.role} Dashboard")
+    st.write(f"Hello {current_user.name}, welcome to the {current_user.role} Dashboard")
 

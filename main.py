@@ -62,6 +62,8 @@ if st.session_state.logged_in:
     with dashboard_page.container():
         if st.session_state.current_user.role == "CareStaff":
             gui.carestaff_dashboard.launch_carestaff_dashboard()
+        if st.session_state.current_user.role == "CareStaff":
+            gui.patient_dashboard.launch_patient_dashboard()
         else:
             st.write(
                 f"Dashboard for {st.session_state.current_user.name} "
