@@ -43,10 +43,10 @@ with login_page.container():
     if current_user is not None:
         password = st.text_input("Enter your password:")
 
-    if password == current_user.password:
-        login_page.empty()
-        with dashboard_page.container():
-            gui.carestaff_dashboard.test_launch()
+        if password == current_user.password:
+            login_page.empty()
+            with dashboard_page.container():
+                gui.carestaff_dashboard.test_launch()
 
     # if "current_user" not in st.session_state:
     #     st.session_state.current_user = app.utils.load_user(user_name)
