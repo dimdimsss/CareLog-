@@ -6,6 +6,13 @@ from app.user import User
 def testfunction():
     print("function is working!")
 
+
+class TestClass:
+    """If you are seeing this message in streamlit, it means class imports are working"""
+    def __init__(self, field):
+        self.field = field
+
+
 def load_user(user_id):
     """Loads a user by user_id from the json file and returns a User object using the corresponding data"""
     with open("data/users.json", "r") as f:
@@ -18,13 +25,7 @@ def load_user(user_id):
 
 
 
-class TestClass:
-    """If you are seeing this message in streamlit, it means class imports are working"""
-    def __init__(self, field):
-        self.field = field
-
-
-
+# I've included these classes but i'm not sure if they are actually needed
 class Patient:
     """placeholder docstring"""
     def __init__(self, mrn): # what does mrn mean?(UML diagram)

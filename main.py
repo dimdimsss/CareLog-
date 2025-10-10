@@ -1,14 +1,14 @@
 import streamlit as st
-import json #might not be necessary but just in case
+import json # Might not be necessary but just in case
 
-#so we can use stuff from them (folder.file.function/class)
+# So we can use stuff from them (folder.file.function/class)
 import app 
 import gui
 
 
 
 
-class CareLog: # dims do we still need this here?
+class CareLog: # Dims do we still need this here?
     def __init__(self, patients_name, log, date_and_time):
         self.patients_name = patients_name
         self.log = log
@@ -17,18 +17,20 @@ class CareLog: # dims do we still need this here?
         
 
 
-#___testing things___
-#app.utils.testfunction() # testing imports
+#_____testing things_____
+# You can uncomment things if you wanna test things out
 
-# current_user = app.utils.load_user("cs001")
-# print(current_user)
+# app.utils.testfunction() # Testing function imports. Should print a message
 
-#app.utils.TestClass
+# current_user = app.utils.load_user("cs001") # Testing object creation
+# print(current_user) # Will print object details if successful
+
+# app.utils.TestClass # You should see a message in streamlit if this works
 
 
 
 
-#____Main program start goes below here____
+#______Main program start goes below here______
 
 login_page = st.empty()
 dashboard_page = st.empty()

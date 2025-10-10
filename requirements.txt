@@ -1,3 +1,2 @@
-#required modules to use program
-json
+# Required modules to use program
 streamlit

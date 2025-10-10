@@ -1,5 +1,5 @@
-#gitignore file is just a file that prevents any temporary or uneeded files from being pushed.
-#will make commits a lot less of a headache
+# Gitignore file is just a file that prevents any temporary or uneeded files from being pushed.
+# Will make commits a lot less of a headache
 
 # Byte-compiled / cache files
 __pycache__/
