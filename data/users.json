@@ -7,7 +7,7 @@
       "role": "default"
     },
     {
-      "user_id": "cs001",
+      "user_id": "c001",
       "password": "1234",
       "name": "Dr. Jordan Jones",
       "role": "CareStaff"
