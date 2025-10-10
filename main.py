@@ -27,20 +27,29 @@ app.utils.TestClass
 
 login_page = st.empty()
 
-login_page.header("Welcome to Carelog!") # im testing to see if streamlit is imported correctly can you guys check to see if this is showing on your end. works for me but i have path issues so it might be different - Aidan
-login_page.subheader("Login")
+# login_page.header("Welcome to Carelog!") # im testing to see if streamlit is imported correctly can you guys check to see if this is showing on your end. works for me but i have path issues so it might be different - Aidan
+# login_page.subheader("Login")
 
 
 
-#choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
-option = login_page.selectbox(
-    'Choose a User type (this does nothing right now):',
-    ['CareStaff', 'Patient', 'Clerk', 'Admin']
-)
+# #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
+# option = login_page.selectbox(
+#     'Choose a User type (this does nothing right now):',
+#     ['CareStaff', 'Patient', 'Clerk', 'Admin']
+# )
 
-login_page.write("you chose", option)
-login_page.write("[streamlit and logic stuff happening and then respective dashboard loaded from gui]")
+# login_page.write("you chose", option)
+# login_page.write("[streamlit and logic stuff happening and then respective dashboard loaded from gui]")
 
-if login_page.button("access CareStaff dahsboard (will add authentication)"):
-    login_page.empty()
-    gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
+# if login_page.button("access CareStaff dahsboard (will add authentication)"):
+#     login_page.empty()
+#     gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
+
+with login_page.container():
+    st.header("Welcome to Carelog!")
+    st.subheader("Login")
+    option = st.selectbox('Choose a User type:', ['CareStaff', 'Patient', 'Clerk', 'Admin'])
+    st.write("You chose", option)
+
+    if st.button("Access CareStaff dashboard"):
+        login_page.empty()  # clears everything
