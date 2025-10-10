@@ -1,4 +1,4 @@
-<span style="font-size: 50px;">CareLog Program!</span>
+# CareLog Program!
 
 Run the program using the terminal in main.py. In the terminal, enter:
 
