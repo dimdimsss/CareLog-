@@ -7,8 +7,7 @@ def testfunction():
     print("function is working!")
 
 def load_user(user_id):
-    """Loads a user by ID from the JSON file and returns a User object."""
-    print("yeah")
+    """Loads a user by user_id from the json file and returns a User object using the corresponding data"""
     with open("data/users.json", "r") as f:
         data = json.load(f)
 
