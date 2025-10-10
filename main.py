@@ -38,5 +38,5 @@ with login_page.container():
 
     if st.button("Access CareStaff dashboard (will add authentication later)"):
         login_page.empty()  # clears everything
-        with dashboard_page.container:
+        with dashboard_page.container():
             gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
