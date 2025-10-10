@@ -1,15 +1,15 @@
 {
   "users": [
     {
-      "user_id": "default",
-      "password": "default",
-      "name": "default",
-      "role": "default"
+      "user_id": "p001",
+      "password": "1234",
+      "name": "Jacob Johnson",
+      "role": "Patient"
     },
     {
       "user_id": "c001",
       "password": "1234",
-      "name": "Dr. Jordan Jones",
+      "name": "Jordan Jones",
       "role": "CareStaff"
     }
   ]
