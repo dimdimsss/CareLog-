@@ -12,4 +12,7 @@ def launch_admin_dashboard():
 
 
     if st.button("Quit"):
+        st.session_state.logged_in = False
+        st.session_state.current_user = None
+        
         st.rerun()
