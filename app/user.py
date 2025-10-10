@@ -5,3 +5,6 @@ class User:
         self.password = password
         self.name = name
         self.role = role
+
+    def __repr__(self):
+        return f"User(user_id='{self.user_id}', name='{self.name}', role='{self.role}')"

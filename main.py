@@ -12,10 +12,14 @@ class CareLog: # dims do we still need this here?
         self.date_and_time = date_and_time
 
 
-
+#___testing things___
 app.utils.testfunction() # testing imports
 
+current_user = app.utils.load_user("cs001")
+print(current_user)
+
 app.utils.TestClass
+
 
 
 
@@ -28,7 +32,7 @@ st.subheader("Login")
 
 #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
 option = st.selectbox(
-    'Choose a User type:',
+    'Choose a User type (this does nothgnig right now):',
     ['CareStaff', 'Patient', 'Clerk', 'Admin']
 )
 
