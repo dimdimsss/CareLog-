@@ -61,7 +61,7 @@ if not st.session_state.logged_in:
 if st.session_state.logged_in:
     login_page.empty()  # clear login page
     with dashboard_page.container():
-        if st.session_state.current_user.user_id == "cs001":
+        if st.session_state.current_user.role == "Carestaff":
             gui.carestaff_dashboard.test_launch()
         else:
             st.write(f"Dashboard for {st.session_state.current_user.name} (user_id: {st.session_state.current_user.user_id}) not implemented yet")
