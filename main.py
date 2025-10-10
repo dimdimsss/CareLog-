@@ -96,8 +96,11 @@ if not st.session_state.logged_in:
             else:
                 st.warning("User ID does not exist")
 
-# If logged in, show the dashboard
+# If logged in, show the dashboard based on user_id
 if st.session_state.logged_in:
     login_page.empty()  # clear login page
     with dashboard_page.container():
-        gui.carestaff_dashboard.test_launch()
+        if st.session_state.current_user.user_id == "cs001":
+            gui.carestaff_dashboard.test_launch()
+        else:
+            st.write(f"Dashboard for {st.session_state.current_user.name} (user_id: {st.session_state.current_user.user_id}) not implemented yet")
