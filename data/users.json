@@ -11,6 +11,12 @@
       "password": "1234",
       "name": "Jordan Jones",
       "role": "CareStaff"
+    },
+    {
+      "user_id": "a001",
+      "password": "1234",
+      "name": "Josh James",
+      "role": "Admin"
     }
   ]
 }
