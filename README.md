@@ -1,3 +1,9 @@
-CareLog Program!
+<span style="font-size: 20px;">CareLog Program!</span>
 
-(I don't really know what else to put here yet but we need it)
+Run the program using the terminal in main.py. In the terminal, enter:
+
+streamlit run main.py
+
+OR:
+
+python -m streamlit run main.py
