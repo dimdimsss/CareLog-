@@ -40,7 +40,7 @@ with login_page.container():
     option = st.selectbox('Choose a User type (this does nothing right now):', ['CareStaff', 'Patient', 'Clerk', 'Admin']) #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
     st.write("You chose", option)
 
-
+    current_user = app.utils.load_user("default")
 
     user_name = st.text_input("Enter your user ID:")
 
