@@ -13,12 +13,12 @@ class CareLog: # dims do we still need this here?
 
 
 #___testing things___
-app.utils.testfunction() # testing imports
+#app.utils.testfunction() # testing imports
 
 # current_user = app.utils.load_user("cs001")
 # print(current_user)
 
-app.utils.TestClass
+#app.utils.TestClass
 
 
 
