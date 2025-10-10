@@ -14,4 +14,4 @@ OR:
 
 ### Logins and Dashboards
 
- Login requires a user ID and a password. You can view the data\users.json file to see these. Users with different roles will have access to different dashboards.
+ Login requires a user ID and a password. You can view data\users.json to see these. Users with different roles will have access to different dashboards.
