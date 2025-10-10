@@ -25,45 +25,6 @@ app.utils.TestClass
 
 #____Main program start goes below here____
 
-# login_page = st.empty()
-
-# dashboard_page = st.empty()
-
-# with login_page.container():
-#     st.header("Welcome to Carelog!") # im testing to see if streamlit is imported correctly can you guys check to see if this is showing on your end. works for me but i have path issues so it might be different - Aidan
-#     st.subheader("Login")
-
-#     user_name = st.text_input("Enter your user ID:")
-
-#     current_user = app.utils.load_user(user_name)
-
-#     if current_user is not None:
-#         password = st.text_input("Enter your password:")
-
-#         if password == current_user.password:
-#             login_page.empty()
-#             with dashboard_page.container():
-#                 gui.carestaff_dashboard.test_launch()
-
-#     # if "current_user" not in st.session_state:
-#     #     st.session_state.current_user = app.utils.load_user(user_name)
-
-#     # password = st.text_input("Enter your password:")
-
-#     # if password == current_user.password:
-#     #     login_page.empty()  # clears everything
-#     #     with dashboard_page.container():
-#     #         gui.carestaff_dashboard.test_launch()
-
-        
-
-
-
-#     if st.button("Access CareStaff dashboard (will add authentication later)"):
-#         login_page.empty()  # clears everything
-#         with dashboard_page.container():
-#             gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
-
 login_page = st.empty()
 dashboard_page = st.empty()
 
