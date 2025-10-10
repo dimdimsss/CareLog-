@@ -46,10 +46,11 @@ login_page = st.empty()
 #     gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
 
 with login_page.container():
-    st.header("Welcome to Carelog!")
+    st.header("Welcome to Carelog!") # im testing to see if streamlit is imported correctly can you guys check to see if this is showing on your end. works for me but i have path issues so it might be different - Aidan
     st.subheader("Login")
-    option = st.selectbox('Choose a User type:', ['CareStaff', 'Patient', 'Clerk', 'Admin'])
+    option = st.selectbox('Choose a User type (this does nothing right now):', ['CareStaff', 'Patient', 'Clerk', 'Admin']) #choosing a user type and then showing a different dashboard for each type (get from other folders/modules). what do you guys think about this approach?
     st.write("You chose", option)
 
     if st.button("Access CareStaff dashboard"):
         login_page.empty()  # clears everything
+        gui.carestaff_dashboard.test_launch() #testing to see if dashboard can be imported from gui and then launched from main.py
