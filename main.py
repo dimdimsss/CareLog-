@@ -26,6 +26,8 @@ app.utils.TestClass
 #____Main program start goes below here____
 
 current_user = app.utils.load_user("default")
+current_user.password = "default"
+
 
 login_page = st.empty()
 
