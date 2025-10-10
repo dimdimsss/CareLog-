@@ -12,12 +12,10 @@ class CareLog: # dims do we still need this here?
         self.date_and_time = date_and_time
 
 
+
 app.utils.testfunction() # testing imports
 
-app.utils.User
-app.utils.CareStaff
-app.utils.Patient
-
+app.utils.TestClass
 
 
 
