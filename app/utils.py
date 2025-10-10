@@ -25,7 +25,7 @@ def load_user(user_id):
 
 
 
-# I've included these classes but i'm not sure if they are actually needed
+# I've included these classes but i'm not sure if they are actually necassary. Will move to their own file if needed.
 class Patient:
     """placeholder docstring"""
     def __init__(self, mrn): # what does mrn mean?(UML diagram)
