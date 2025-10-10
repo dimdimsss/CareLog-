@@ -1,6 +1,6 @@
 # CareLog Program!
 
-## How to run CareLog
+### How to run CareLog
 
 Run the program using the terminal in main.py. In the terminal, enter:
 
@@ -10,6 +10,6 @@ OR:
 
 python -m streamlit run main.py
 
-## Logins and Dashboards
+### Logins and Dashboards
 
 Login requires a user ID and a password. You can view the users.json file to see these. Users with different roles will have access to different dashboards.
