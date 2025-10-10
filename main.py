@@ -64,13 +64,17 @@ if not st.session_state.logged_in:
 # If logged in, show the dashboard based on role
 if st.session_state.logged_in:
     login_page.empty()  # clear login page
+    
     with dashboard_page.container():
         if st.session_state.current_user.role == "CareStaff":
             gui.carestaff_dashboard.launch_carestaff_dashboard()
+
         elif st.session_state.current_user.role == "Patient":
             gui.patient_dashboard.launch_patient_dashboard()
+
         elif st.session_state.current_user.role == "Admin":
             gui.admin_dashboard.launch_admin_dashboard()
+
         else:
             st.write(
                 f"Dashboard for {st.session_state.current_user.name} "
