@@ -1,7 +1,7 @@
 import streamlit as st
 import json # Might not be necessary but just in case
 
-# So we can use stuff from them (folder.file.function/class)
+# So we can use stuff from them (folder.file.function/)
 import app 
 import gui
 
