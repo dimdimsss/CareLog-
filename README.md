@@ -7,3 +7,5 @@ streamlit run main.py
 OR:
 
 python -m streamlit run main.py
+
+<span style="font-family: 'Times New Roman', serif;">This text might be in Times New Roman.</span>
