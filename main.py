@@ -20,7 +20,7 @@ class CareLog: # Dims do we still need this here?
 #_____testing things_____
 # You can uncomment things if you wanna test things out
 
-# app.utils.testfunction() # Testing function imports. Should print a message
+# app.utils.test_function() # Testing function imports. Should print a message
 
 # current_user = app.utils.load_user("cs001") # Testing object creation
 # print(current_user) # Will print object details if successful
