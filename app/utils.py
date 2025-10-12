@@ -3,7 +3,7 @@ import json
 from app.user import User
 
 
-def testfunction():
+def test_function():
     print("function is working!")
 
 
