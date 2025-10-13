@@ -30,6 +30,15 @@ def get_patient_logs(user_id, data_file):
     for patient_data in data["patient_data"]:
         if patient_data["user_id"] == user_id:
             return patient_data["logs"]
+        
+def get_patient_name(user_id, data_file):
+    with open(data_file, "r") as f:
+        data = json.load(f)
+
+    for patient_data in data["patient_data"]:
+        if patient_data["user_id"] == user_id:
+            return patient_data["name"]
+
 
 
 
