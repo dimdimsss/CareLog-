@@ -7,7 +7,7 @@
       "role": "Patient",
       "symptoms": "Fever",
       "preferences": "Pescatarian",
-      "logs": [{"Log 1": "He is stable for now"}]
+      "logs": [{"Log 1": "He is stable for now"}, {"Log 2": "His condition is improving"}]
     }
   ]
 }
