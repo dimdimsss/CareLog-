@@ -19,7 +19,10 @@ def launch_admin_dashboard():
         loaded_log = app.utils.get_patient_logs(patient_for_view, "data/patient_data.json")
 
         if loaded_log:
-            st.write(loaded_log)
+            #st.write(loaded_log)
+            with st.expander("Logs"): 
+                st.write(loaded_log)
+
         else:
             st.warning("No patient data for user ID")
 
