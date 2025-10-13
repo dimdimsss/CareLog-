@@ -16,6 +16,8 @@ def launch_admin_dashboard():
 
     loaded_log = app.utils.get_patient_logs(patient_for_view, "data/patient_data.json")
 
+    st.write(loaded_log)
+
     #st.selectbox["Select a log", loaded_log]
 
 
