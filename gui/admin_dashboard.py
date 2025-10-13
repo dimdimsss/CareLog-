@@ -20,7 +20,7 @@ def launch_admin_dashboard():
 
         if loaded_log:
             #st.write(loaded_log)
-            with st.expander("Logs for", app.utils.get_patient_name(patient_for_view, "data/patient_data.json")): 
+            with st.expander("Logs for", str(app.utils.get_patient_name(patient_for_view, "data/patient_data.json"))): 
                 st.write(loaded_log)
 
         else:
