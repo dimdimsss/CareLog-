@@ -1,9 +1,10 @@
 from app.user import User
 
-class patient(User):
-    def __init__(self, user_id, name, symptoms="None", preferences="None", logs=None): # Shoudn't need role or password on object creation, so they are removed and assigned default values in super()
-        super().__init__(user_id, name, password="Default", role="Patient") 
+class Patient(User):
+    def __init__(self, user_id, password, name, role, symptoms, preferences, logs=None): # Im not sure if we need role or password on object creation, might be removeable and assigned default values in super
+        super().__init__(user_id, password, name, role) # Base attributes from User
 
+        # Attributes for data
         self.symptoms = symptoms
         self.preferences = preferences
-        self.logs = logs if logs is not None else [] # You normally create a list with a log as a dictionary element inside of it for this attribute on object creation. if you don't it will just make an empty list for you to add stuff to later
+        self.logs = logs if logs is not None else [] # Loading a patient normally assigns a list with logs as dictionary elements inside of it for this attribute on object creation. If it doesn't it will just make an empty list for you to append to later. This is because sometimes a user might, or might not have existing logs

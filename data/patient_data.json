@@ -1,0 +1,13 @@
+{
+  "patient_data": [
+    {
+      "user_id": "p001",
+      "password": "1234_patient",
+      "name": "Jacob Johnson",
+      "role": "Patient",
+      "symptoms": "Fever",
+      "preferences": "Pescatarian",
+      "logs": [{"Log 1": "He is stable for now"}]
+    }
+  ]
+}
