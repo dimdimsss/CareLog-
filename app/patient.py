@@ -1,4 +1,4 @@
-from app import User
+from app.user import User
 
 class patient(User):
     def __init__(self, user_id, password, name, role, symptoms="None", preferences="None", logs=None):
