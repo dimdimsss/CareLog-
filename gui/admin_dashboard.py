@@ -15,9 +15,15 @@ def launch_admin_dashboard():
     st.subheader("View Patient Logs")
     patient_for_view = st.text_input("Enter Patient user ID")
 
-    loaded_log = app.utils.get_patient_logs(patient_for_view, "data/patient_data.json")
+    if patient_for_view:
+        loaded_log = app.utils.get_patient_logs(patient_for_view, "data/patient_data.json")
 
-    st.write(loaded_log)
+        if loaded_log:
+            st.write(loaded_log)
+        else:
+            st.warning("No logs found")
+    else:
+        st.warning("User ID does not exist")
 
     #st.selectbox["Select a log", loaded_log]
 
