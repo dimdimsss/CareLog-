@@ -4,16 +4,6 @@ import json # Might not be necessary but just in case
 # So we can use stuff from them (folder.file.function/)
 import app 
 import gui
-
-
-
-
-class CareLog: # Dims do we still need this here?
-    def __init__(self, patients_name, log, date_and_time):
-        self.patients_name = patients_name
-        self.log = log
-        self.date_and_time = date_and_time
-
         
 
 
