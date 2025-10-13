@@ -13,9 +13,9 @@ class TestClass:
         self.field = field
 
 
-def load_user(user_id):
+def load_user(user_id, data_file):
     """Loads a user by user_id from the json file and returns a User object using the corresponding data"""
-    with open("data/users.json", "r") as f:
+    with open(data_file, "r") as f:
         data = json.load(f)
 
     for user_data in data["users"]:

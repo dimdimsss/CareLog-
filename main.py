@@ -39,7 +39,7 @@ if not st.session_state.logged_in:
         user_name = st.text_input("Enter your user ID:")
 
         if user_name:
-            current_user = app.utils.load_user(user_name)
+            current_user = app.utils.load_user(user_name, "data/users.json")
             if current_user is not None:
                 password = st.text_input("Enter your password:", type="password")
 
