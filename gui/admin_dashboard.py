@@ -23,9 +23,7 @@ def launch_admin_dashboard():
         else:
             st.warning("No logs found")
     else:
-        st.warning("User ID does not exist")
-
-    #st.selectbox["Select a log", loaded_log]
+        st.warning("No patient data for user ID")
 
 
 
