@@ -1,6 +1,7 @@
 from app.user import User
 
 class Patient(User):
+    """Child class of User that adds additional data attributes"""
     def __init__(self, user_id, password, name, role, symptoms, preferences, logs=None): # Im not sure if we need role or password on object creation, might be removeable and assigned default values in super
         super().__init__(user_id, password, name, role) # Base attributes from User
 
