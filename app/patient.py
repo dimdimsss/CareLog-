@@ -1,8 +1,8 @@
 from app.user import User
 
 class patient(User):
-    def __init__(self, user_id, password, name, role, symptoms="None", preferences="None", logs=None):
-        super().__init__(user_id, password, name, role)
+    def __init__(self, user_id, name, symptoms="None", preferences="None", logs=None): # Shoudn't need role or password on object creation, so they are removed and assigned default values in super()
+        super().__init__(user_id, name, password="Default", role="Patient") 
 
         self.symptoms = symptoms
         self.preferences = preferences
