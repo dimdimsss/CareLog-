@@ -21,9 +21,7 @@ def launch_admin_dashboard():
         if loaded_log:
             st.write(loaded_log)
         else:
-            st.warning("No logs found")
-    else:
-        st.warning("No patient data for user ID")
+            st.warning("No patient data for user ID")
 
 
 
