@@ -16,21 +16,9 @@ def launch_admin_dashboard():
 
     patient_for_view = st.text_input("Enter Patient user ID")
 
-    #current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
-
-    with open("data/patient_data.json", "r") as f:
-        data = json.load(f)
-
-    for patient_data in data["patient_data"]:
-        if patient_data["user_id"] == patient_for_view:
-            current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
-            
-
+    current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")    
 
     if patient_for_view:
-        #loaded_log = current_patient.logs
-
-        #if loaded_log:
 
         st.write(f"Viewing data for patient: {current_patient.name}")
         st.write(f"Symptoms: {current_patient.symptoms}")
