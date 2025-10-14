@@ -11,6 +11,7 @@ def launch_patient_dashboard():
 
     # Fill this in with dashboard features and functions
 
+# Lets Patient view their own data
     st.subheader(f"Data for {current_user.name}")
     
     patient_for_view = current_user.user_id
