@@ -15,6 +15,7 @@ def launch_admin_dashboard():
     st.subheader("View Patient Logs")
     
     patient_for_view = st.text_input("Enter Patient user ID")
+    current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
     name_of_patient = app.utils.get_patient_name(patient_for_view, "data/patient_data.json")
 
     if patient_for_view:
@@ -22,6 +23,11 @@ def launch_admin_dashboard():
 
         if loaded_log:
             #st.write(loaded_log)
+
+            st.write(current_patient.name)
+            st.write(f"Symptoms: {current_patient.symptoms}")
+            st.write(f"preferences: {current_patient.preferences}")
+
             with st.expander(f"Logs for {name_of_patient}"):
                 st.write(loaded_log)
 
