@@ -11,8 +11,8 @@ def launch_admin_dashboard():
 
     # Fill this in with dashboard features and functions
 
-    # Lets the user view a Patient log of their choice
-    st.subheader("View Patient Logs")
+    # Lets the user view a data and logs for a Patient of their choice
+    st.subheader("View Patient Data")
     
     patient_for_view = st.text_input("Enter Patient user ID")
     current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
@@ -23,15 +23,16 @@ def launch_admin_dashboard():
         if loaded_log:
             #st.write(loaded_log)
 
-            st.write(current_patient.name)
+            st.write(f"Viewing data for Patient: {current_patient.name}")
             st.write(f"Symptoms: {current_patient.symptoms}")
-            st.write(f"preferences: {current_patient.preferences}")
+            st.write(f"Preferences: {current_patient.preferences}")
 
             with st.expander(f"Logs for {current_patient.name}"):
                 st.write(loaded_log)
 
         else:
             st.warning("No patient data for user ID")
+    
 
 
 
