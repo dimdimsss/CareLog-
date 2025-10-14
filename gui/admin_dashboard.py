@@ -23,7 +23,7 @@ def launch_admin_dashboard():
         if loaded_log:
             #st.write(loaded_log)
 
-            st.write(f"Viewing data for Patient: {current_patient.name}")
+            st.write(f"Viewing data for patient: {current_patient.name}")
             st.write(f"Symptoms: {current_patient.symptoms}")
             st.write(f"Preferences: {current_patient.preferences}")
 
