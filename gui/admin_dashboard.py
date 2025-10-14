@@ -11,7 +11,7 @@ def launch_admin_dashboard():
 
     # Fill this in with dashboard features and functions
 
-    # Lets the user view a data and logs for a Patient of their choice
+    # Lets the user view data and logs for a Patient of their choice
     st.subheader("View Patient Data")
     
     patient_for_view = st.text_input("Enter Patient user ID")
@@ -21,7 +21,6 @@ def launch_admin_dashboard():
         loaded_log = current_patient.logs
 
         if loaded_log:
-            #st.write(loaded_log)
 
             st.write(f"Viewing data for patient: {current_patient.name}")
             st.write(f"Symptoms: {current_patient.symptoms}")
