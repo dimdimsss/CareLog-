@@ -38,17 +38,3 @@ def get_patient_name(user_id, data_file):
     for patient_data in data["patient_data"]:
         if patient_data["user_id"] == user_id:
             return patient_data["name"]
-
-
-
-
-# I've included these classes but i'm not sure if they are actually necassary. Will move to their own file if needed.
-class Patient:
-    """placeholder docstring"""
-    def __init__(self, mrn): # what does mrn mean?(UML diagram)
-        self.mrn = mrn
-
-class CareStaff:
-    """placeholder docstring"""
-    def __init__(self, speciality):
-        self.speciality = speciality
