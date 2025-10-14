@@ -21,16 +21,7 @@ def load_user(user_id, data_file):
 
     for user_data in data["users"]:
         if user_data["user_id"] == user_id:
-            return User(**user_data)
-               
-def get_patient_logs(user_id, data_file):
-    """Returns a Patient's list of logs from the logs attribute in the json file"""
-    with open(data_file, "r") as f:
-        data = json.load(f)
-
-    for patient_data in data["patient_data"]:
-        if patient_data["user_id"] == user_id:
-            return patient_data["logs"]
+            return User(**user_data)          
 
 def load_patient(user_id, data_file):
     with open(data_file, "r") as f:
