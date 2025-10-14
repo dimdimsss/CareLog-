@@ -15,7 +15,7 @@ class TestClass:
 
 
 def load_user(user_id, data_file):
-    """Loads a user by user_id from the json file and returns a User object using the corresponding data"""
+    """Loads a user by user_id from the json file and returns a User object using the corresponding data. Should use users.json"""
     with open(data_file, "r") as f:
         data = json.load(f)
 
@@ -24,6 +24,7 @@ def load_user(user_id, data_file):
             return User(**user_data)          
 
 def load_patient(user_id, data_file):
+    """Loads a Patient by user_id from the json file and returns a Patient object using the corresponding data. Should use patient_data.json"""
     with open(data_file, "r") as f:
         data = json.load(f)
 
