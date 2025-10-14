@@ -16,7 +16,6 @@ def launch_admin_dashboard():
     
     patient_for_view = st.text_input("Enter Patient user ID")
     current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
-    name_of_patient = app.utils.get_patient_name(patient_for_view, "data/patient_data.json")
 
     if patient_for_view:
         loaded_log = app.utils.get_patient_logs(patient_for_view, "data/patient_data.json")
