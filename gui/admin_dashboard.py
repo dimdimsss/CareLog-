@@ -19,19 +19,19 @@ def launch_admin_dashboard():
 
 
     if patient_for_view:
-        loaded_log = current_patient.logs
+        #loaded_log = current_patient.logs
 
-        if loaded_log:
+        #if loaded_log:
 
-            st.write(f"Viewing data for patient: {current_patient.name}")
-            st.write(f"Symptoms: {current_patient.symptoms}")
-            st.write(f"Preferences: {current_patient.preferences}")
+        st.write(f"Viewing data for patient: {current_patient.name}")
+        st.write(f"Symptoms: {current_patient.symptoms}")
+        st.write(f"Preferences: {current_patient.preferences}")
 
-            with st.expander(f"Logs for {current_patient.name}"):
-                st.write(loaded_log)
+        with st.expander(f"Logs for {current_patient.name}"):
+            st.write(loaded_log)
 
-        else:
-            st.warning("No patient data for user ID")
+    else:
+        st.warning("No patient data for user ID")
     
 
 
