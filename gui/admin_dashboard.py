@@ -19,7 +19,7 @@ def launch_admin_dashboard():
     with open("data/patient_data.json", "r") as f:
         data = json.load(f)
 
-    for patient_data in data["users"]:
+    for patient_data in data["patient_data"]:
         if patient_data["user_id"] == patient_for_view:
             current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
 
