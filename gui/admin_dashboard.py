@@ -17,17 +17,12 @@ def launch_admin_dashboard():
     patient_for_view = st.text_input("Enter Patient user ID")
    
     if patient_for_view:
-
         current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
 
         if current_patient is not None:
-            
             st.write(f"Viewing data for patient: {current_patient.name}")
             st.write(f"Symptoms: {current_patient.symptoms}")
             st.write(f"Preferences: {current_patient.preferences}")
-
-            #with st.expander(f"Logs for {current_patient.name}"):
-                #st.write(current_patient.logs)
             
             with st.expander(f"Logs for {current_patient.name}", expanded=False):
                 for log in current_patient.logs:
