@@ -28,7 +28,7 @@ def launch_admin_dashboard():
         st.write(f"Preferences: {current_patient.preferences}")
 
         with st.expander(f"Logs for {current_patient.name}"):
-            st.write(loaded_log)
+            st.write(current_patient.logs)
 
     else:
         st.warning("No patient data for user ID")
