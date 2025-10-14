@@ -14,7 +14,6 @@ def launch_admin_dashboard():
     # Lets the user view data and logs for a Patient of their choice
     st.subheader("View Patient Data")
 
-    current_patient = app.utils.load_patient("p001", "data/patient_data.json")
     patient_for_view = st.text_input("Enter Patient user ID")
 
     #current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
