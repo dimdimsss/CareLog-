@@ -27,7 +27,7 @@ def launch_admin_dashboard():
 
 
 
-    if patient_for_view:
+    if patient_for_view is not None:
         loaded_log = current_patient.logs
 
         if loaded_log:
