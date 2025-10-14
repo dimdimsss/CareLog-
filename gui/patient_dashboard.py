@@ -10,6 +10,23 @@ def launch_patient_dashboard():
     st.write(f"Hello {current_user.name}, welcome to the {current_user.role} Dashboard")
 
     # Fill this in with dashboard features and functions
+    
+    patient_for_view = current_user.user_id
+   
+    if patient_for_view:
+        current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
+
+        if current_patient is not None:
+            st.write(f"Viewing data for patient: {current_patient.name}")
+            st.write(f"Symptoms: {current_patient.symptoms}")
+            st.write(f"Preferences: {current_patient.preferences}")
+            
+            with st.expander(f"Logs for {current_patient.name}", expanded=False):
+                for log in current_patient.logs:
+                    for log_title, log_content in log.items():
+                        with st.expander(log_title, expanded=False):
+                            st.write(log_content)
+
 
 
 
