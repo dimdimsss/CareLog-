@@ -18,7 +18,7 @@ def launch_admin_dashboard():
     current_patient = app.utils.load_patient(patient_for_view, "data/patient_data.json")
 
     if patient_for_view:
-        loaded_log = current_patient.logs #app.utils.get_patient_logs(patient_for_view, "data/patient_data.json")
+        loaded_log = current_patient.logs
 
         if loaded_log:
             #st.write(loaded_log)
