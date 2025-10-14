@@ -1,4 +1,4 @@
-# "Utility" file for functions. We can organise classes and other function better in other files or even classes later on
+# "Utility" file for functions. We can organise functions better in other files or even classes later on
 import json
 from app.user import User
 from app.patient import Patient
