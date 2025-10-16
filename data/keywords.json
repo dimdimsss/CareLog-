@@ -1,0 +1,82 @@
+{
+  "emotional_distress": [
+    "sad",
+    "tired",
+    "stressed",
+    "worried",
+    "can't sleep",
+    "crying",
+    "anxious",
+    "overwhelmed",
+    "lonely",
+    "no motivation",
+    "hopeless",
+    "lost interest"
+  ],
+
+  "health_concerns": [
+    "pain",
+    "dizzy",
+    "headache",
+    "nausea",
+    "weak",
+    "can't breathe",
+    "sick",
+    "fatigue",
+    "fainted",
+    "hurt"
+  ],
+
+  "medication_issues": [
+    "missed medication",
+    "forgot pills",
+    "ran out of medicine",
+    "side effects",
+    "dose too high",
+    "stopped taking medication",
+    "can't afford medicine"
+  ],
+
+  "behavioural_flags": [
+    "angry",
+    "frustrated",
+    "shouting",
+    "argument",
+    "lost control",
+    "upset",
+    "irritable"
+  ],
+
+  "confusion_or_cognitive": [
+    "confused",
+    "forgot",
+    "can't remember",
+    "disoriented",
+    "mixed up",
+    "can't focus",
+    "hearing things",
+    "seeing things"
+  ],
+
+  "environmental_or_safety": [
+    "unsafe",
+    "no food",
+    "no shelter",
+    "neglect",
+    "no support",
+    "alone",
+    "problem at home"
+  ],
+
+  "suicidal_or_crisis": [
+    "want to die",
+    "end it all",
+    "no reason to live",
+    "can't go on",
+    "hurt myself",
+    "self harm",
+    "feeling hopeless",
+    "better off gone",
+    "thinking of giving up"
+  ]
+}
