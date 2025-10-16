@@ -58,7 +58,7 @@ def launch_carestaff_dashboard():
 
                 if a.get("status") == "open":
                     if c1.button("Acknowledge", key=ack_key):
-                        utils.acknowledge_alert(a["id"],
+                        app.utils.acknowledge_alert(a["id"],
                             staff_id=str(getattr(current_user, "user_id", "")),
                             staff_name=getattr(current_user, "name", ""))
                         st.rerun()
