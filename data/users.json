@@ -7,6 +7,12 @@
       "role": "Patient"
     },
     {
+      "user_id": "p002",
+      "password": "1234_patient",
+      "name": "Joe Jackson",
+      "role": "Patient"
+    },
+    {
       "user_id": "c001",
       "password": "1234_carestaff",
       "name": "Jordan Jones",
