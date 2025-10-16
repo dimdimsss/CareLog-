@@ -53,6 +53,38 @@
       "resolved_time": "2025-10-16T08:24:47.793862+00:00",
       "notes": "",
       "kind": "nurse_call"
+    },
+    {
+      "id": "1c23dab1-c8ef-4629-9481-390f3dc410e5",
+      "timestamp": "2025-10-16T14:19:46.952325+00:00",
+      "status": "open",
+      "priority": "normal",
+      "source": "patient_dashboard",
+      "patient_id": "p001",
+      "patient_name": "Jacob Johnson",
+      "room": "",
+      "ack_by": null,
+      "ack_time": null,
+      "resolved_by": null,
+      "resolved_time": null,
+      "notes": "",
+      "kind": "nurse_call"
+    },
+    {
+      "id": "64bc3043-a912-4f32-9d59-041f0e447e68",
+      "timestamp": "2025-10-16T14:20:28.086640+00:00",
+      "status": "open",
+      "priority": "normal",
+      "source": "patient_dashboard",
+      "patient_id": "p002",
+      "patient_name": "Joe Jackson",
+      "room": "",
+      "ack_by": null,
+      "ack_time": null,
+      "resolved_by": null,
+      "resolved_time": null,
+      "notes": "",
+      "kind": "nurse_call"
     }
   ]
 }
