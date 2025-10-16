@@ -2,6 +2,12 @@ import json
 import app
 import streamlit as st
 
+import os
+import re
+import uuid
+from typing import Any, Dict, List, Optional, Tuple
+from datetime import datetime, timezone
+
 def launch_carestaff_dashboard():
     current_user = st.session_state.current_user
 
@@ -67,7 +73,7 @@ def launch_carestaff_dashboard():
 
                 if a.get("status") in ("open", "acknowledged"):
                     if c2.button("Resolve", key=res_key):
-                        utils.resolve_alert(a["id"],
+                        app.utils.resolve_alert(a["id"],
                             staff_id=str(getattr(current_user, "user_id", "")),
                             staff_name=getattr(current_user, "name", ""))
                         st.rerun()
