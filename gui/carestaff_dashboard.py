@@ -23,7 +23,7 @@ def launch_carestaff_dashboard():
         st.caption("Use Acknowledge/Resolve to manage alerts.")
 
     status_filter = None if show.lower() == "all" else show.lower()
-    alerts = utils.list_alerts(status=status_filter)
+    alerts = app.utils.list_alerts(status=status_filter)
 
     if not alerts:
         st.info("No alerts to display.")
@@ -92,7 +92,7 @@ def launch_carestaff_dashboard():
 
     if st.session_state.show_risk_scanner:
         st.info("Select a patient to scan their logs for at-risk keywords.")
-        patients = utils.list_patients("data/patient_data.json")
+        patients = app.utils.list_patients("data/patient_data.json")
 
         if not patients:
             st.warning("No patients found in data/patient_data.json")
@@ -115,7 +115,7 @@ def launch_carestaff_dashboard():
             with col1:
                 if st.button("Scan selected patient"):
                     pid = selected_patient.get("user_id")
-                    rec = utils.get_patient_risk(pid)
+                    rec = app.utils.get_patient_risk(pid)
                     if not rec or rec.get("score", 0) == 0:
                         st.success("No concerning keywords found for this patient.")
                     else:
@@ -134,7 +134,7 @@ def launch_carestaff_dashboard():
 
             with col2:
                 if st.button("Scan all patients"):
-                    results = utils.at_risk_patients()
+                    results = app.utils.at_risk_patients()
                     if not results:
                         st.info("No hits across all patients.")
                     else:
