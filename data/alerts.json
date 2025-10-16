@@ -1,0 +1,58 @@
+{
+  "alerts": [
+    {
+      "id": "2f1c3791-efc2-4852-bc7b-0cb93e2e53d9",
+      "timestamp": "2025-10-16T08:14:25.810641+00:00",
+      "status": "resolved",
+      "priority": "normal",
+      "source": "patient_dashboard",
+      "patient_id": "p001",
+      "patient_name": "Jacob Johnson",
+      "room": "",
+      "ack_by": "Jordan Jones",
+      "ack_time": "2025-10-16T08:14:46.157607+00:00",
+      "resolved_by": "Jordan Jones",
+      "resolved_time": "2025-10-16T08:14:47.694164+00:00",
+      "notes": ""
+    },
+    {
+      "id": "1aa5d30e-a707-46c1-87cc-d70959267820",
+      "kind": "staff_alert",
+      "timestamp": "2025-10-16T08:24:03.418539+00:00",
+      "status": "resolved",
+      "priority": "urgent",
+      "source": "carestaff_dashboard",
+      "room": "p001",
+      "message": "assist with lift",
+      "raised_by_id": "c001",
+      "raised_by_name": "Jordan Jones",
+      "to_staff_ids": [
+        "101"
+      ],
+      "to_roles": [],
+      "patient_id": "",
+      "patient_name": "",
+      "ack_by": null,
+      "ack_time": null,
+      "resolved_by": "Jordan Jones",
+      "resolved_time": "2025-10-16T08:24:49.505971+00:00",
+      "notes": ""
+    },
+    {
+      "id": "9704cbd1-1c61-491f-8af8-ed3aba125e89",
+      "timestamp": "2025-10-16T08:24:31.463752+00:00",
+      "status": "resolved",
+      "priority": "normal",
+      "source": "patient_dashboard",
+      "patient_id": "p001",
+      "patient_name": "Jacob Johnson",
+      "room": "",
+      "ack_by": null,
+      "ack_time": null,
+      "resolved_by": "Jordan Jones",
+      "resolved_time": "2025-10-16T08:24:47.793862+00:00",
+      "notes": "",
+      "kind": "nurse_call"
+    }
+  ]
+}
