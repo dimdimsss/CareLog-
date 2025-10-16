@@ -8,6 +8,15 @@
       "symptoms": "Fever",
       "preferences": "Pescatarian",
       "logs": [{"Log 1": "He is stable for now"}, {"Log 2": "His condition is improving"}]
+    },
+    {
+      "user_id": "p002",
+      "password": "1234_patient",
+      "name": "Joe Jackson",
+      "role": "Patient",
+      "symptoms": "Vomiting, Headaches",
+      "preferences": "Must have meat in meals",
+      "logs": [{"Log 1": "Very irritable, staff harrasment"}, {"Log 2": "His condition is worsening"}]
     }
   ]
 }
