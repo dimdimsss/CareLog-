@@ -71,6 +71,31 @@ def _compile_phrase_regex(phrase: str) -> re.Pattern:
     pattern = r"\b" + r"\s+".join(escaped) + r"\b"
     return re.compile(pattern, flags=re.IGNORECASE)
 
+def _coerce_logs_to_strings(logs_obj: Any) -> List[str]:
+    """
+    Accepts a patient's logs field which may be a list of dicts like
+    [{"Log 1": "..."}, {"Log 2": "..."}] or a list of strings.
+    Returns a flat list of log strings.
+    """
+    out: List[str] = []
+    if isinstance(logs_obj, list):
+        for item in logs_obj:
+            if isinstance(item, dict):
+                # join all string values from {"Log N": "..."} shape
+                vals = [v for v in item.values() if isinstance(v, str)]
+                if vals:
+                    out.append(" ".join(vals))
+            elif isinstance(item, str):
+                out.append(item)
+    elif isinstance(logs_obj, dict):
+        # fallback: join any string values
+        vals = [v for v in logs_obj.values() if isinstance(v, str)]
+        if vals:
+            out.append(" ".join(vals))
+    elif isinstance(logs_obj, str):
+        out.append(logs_obj)
+    return out
+
 def at_risk_patients(
     keywords_path: str = None,
     logs_path: str = None,
@@ -80,14 +105,17 @@ def at_risk_patients(
     max_snippets_per_patient: int = 8
 ) -> List[Dict[str, Any]]:
     """
-    Scan logs.json for keywords.json; return per-patient hits sorted by score desc.
-    Each result:
-      { patient_id, score, risk_level, category_counts, hits[{category, phrase, snippet}], logs_scanned }
+    Scan logs for keywords.
+    Supports these sources:
+      1) data/logs.json   -> list or {"logs":[...]} or { "<pid>": [ ... ] }
+      2) data/patient_data.json -> {"patient_data":[{ user_id, logs:[...] }, ...]}
+    Returns per-patient hits sorted by score desc.
     """
     if keywords_path is None:
         keywords_path = _resolve_data_path("keywords.json")
     if logs_path is None:
-        logs_path = _resolve_data_path("logs.json")
+        # default to patient_data.json (where you actually store the logs)
+        logs_path = _resolve_data_path("patient_data.json")
 
     if weights is None:
         weights = {
@@ -110,30 +138,12 @@ def at_risk_patients(
 
     patients: Dict[str, Dict[str, Any]] = {}
 
-    def extract_patient_id(entry: Dict[str, Any]) -> str:
-        for k in ("patient_id", "patientId", "patient", "user_id", "userId", "id"):
-            if k in entry and isinstance(entry[k], (str, int)):
-                return str(entry[k])
-        return "UNKNOWN"
-
-    def extract_text(entry: Dict[str, Any]) -> str:
-        for k in ("text","note","notes","message","entry","log","content","observation","summary","complaint","body","comment"):
-            if k in entry and isinstance(entry[k], str):
-                return entry[k]
-        parts: List[str] = []
-        for v in entry.values():
-            if isinstance(v, str):
-                parts.append(v)
-            elif isinstance(v, list):
-                parts.extend([x for x in v if isinstance(x, str)])
-        return " ".join(parts)
-
     def snippet(text: str, m: re.Match, r: int = 60) -> str:
         s = max(0, m.start() - r); e = min(len(text), m.end() + r)
         return text[s:e].replace("\n", " ").strip()
 
-    def hit(pid: str, cat: str, phrase: str, text: str, m: re.Match, raw_index: int):
-        rec = patients.setdefault(pid, {
+    def ensure_rec(pid: str) -> Dict[str, Any]:
+        return patients.setdefault(pid, {
             "patient_id": pid,
             "score": 0,
             "risk_level": "low",
@@ -141,56 +151,111 @@ def at_risk_patients(
             "hits": [],
             "logs_scanned": 0
         })
+
+    def add_hit(pid: str, cat: str, phrase: str, text: str, m: re.Match, raw_index: int):
+        rec = ensure_rec(pid)
         rec["category_counts"][cat] += 1
         rec["score"] += max(1, int(weights.get(cat, 1)))
         if len(rec["hits"]) < max_snippets_per_patient:
-            rec["hits"].append({"category": cat, "phrase": phrase, "snippet": snippet(text, m), "raw_index": raw_index})
+            rec["hits"].append({
+                "category": cat,
+                "phrase": phrase,
+                "snippet": snippet(text, m),
+                "raw_index": raw_index
+            })
 
-    def process_entry(entry: Dict[str, Any], forced_pid: str | None = None, raw_index: int = -1):
-        pid = forced_pid or extract_patient_id(entry)
-        text = extract_text(entry)
+    # --- Walk source variants ---
+
+    def process_text(pid: str, text: str, raw_index: int):
         if not text:
             return
         for cat, pats in compiled.items():
             for phrase, rx in pats:
                 for m in rx.finditer(text):
-                    hit(pid, cat, phrase, text, m, raw_index)
+                    add_hit(pid, cat, phrase, text, m, raw_index)
 
-    # Walk logs.json (supports lists, {"logs":[...]}, or {pid: [ ... ]})
-    if isinstance(logs_data, list):
-        for i, e in enumerate(logs_data):
-            if isinstance(e, dict):
-                process_entry(e, raw_index=i)
-    elif isinstance(logs_data, dict):
-        if "logs" in logs_data and isinstance(logs_data["logs"], list):
-            for i, e in enumerate(logs_data["logs"]):
+    if isinstance(logs_data, dict) and any(k in logs_data for k in ("patient_data", "patients")):
+        # patient_data.json shape
+        patient_list = logs_data.get("patient_data") or logs_data.get("patients") or []
+        for p in patient_list:
+            if not isinstance(p, dict):
+                continue
+            pid = str(p.get("user_id") or p.get("id") or p.get("patient_id") or "UNKNOWN")
+            texts = _coerce_logs_to_strings(p.get("logs", []))
+            for i, t in enumerate(texts):
+                process_text(pid, t, i)
+                ensure_rec(pid)["logs_scanned"] += 1
+    else:
+        # logs.json shapes
+        def extract_patient_id(entry: Dict[str, Any]) -> str:
+            for k in ("patient_id", "patientId", "patient", "user_id", "userId", "id"):
+                if k in entry and isinstance(entry[k], (str, int)):
+                    return str(entry[k])
+            return "UNKNOWN"
+
+        def extract_text(entry: Dict[str, Any]) -> str:
+            for k in ("text","note","notes","message","entry","log","content","observation","summary","complaint","body","comment"):
+                if k in entry and isinstance(entry[k], str):
+                    return entry[k]
+            parts: List[str] = []
+            for v in entry.values():
+                if isinstance(v, str):
+                    parts.append(v)
+                elif isinstance(v, list):
+                    parts.extend([x for x in v if isinstance(x, str)])
+            return " ".join(parts)
+
+        if isinstance(logs_data, list):
+            for i, e in enumerate(logs_data):
                 if isinstance(e, dict):
-                    process_entry(e, raw_index=i)
-        else:
-            for pid, entries in logs_data.items():
-                if isinstance(entries, list):
-                    for i, e in enumerate(entries):
-                        if isinstance(e, dict):
-                            process_entry(e, forced_pid=str(pid), raw_index=i)
-                elif isinstance(entries, dict):
-                    process_entry(entries, forced_pid=str(pid), raw_index=0)
+                    process_text(extract_patient_id(e), extract_text(e), i)
+                    ensure_rec(extract_patient_id(e))["logs_scanned"] += 1
+        elif isinstance(logs_data, dict):
+            if "logs" in logs_data and isinstance(logs_data["logs"], list):
+                for i, e in enumerate(logs_data["logs"]):
+                    if isinstance(e, dict):
+                        process_text(extract_patient_id(e), extract_text(e), i)
+                        ensure_rec(extract_patient_id(e))["logs_scanned"] += 1
+            else:
+                for pid, entries in logs_data.items():
+                    if isinstance(entries, list):
+                        for i, e in enumerate(entries):
+                            if isinstance(e, dict):
+                                process_text(str(pid), extract_text(e), i)
+                                ensure_rec(str(pid))["logs_scanned"] += 1
+                    elif isinstance(entries, dict):
+                        process_text(str(pid), extract_text(entries), 0)
+                        ensure_rec(str(pid))["logs_scanned"] += 1
 
+    # Risk levels
     medium_min, high_min = thresholds
     for rec in patients.values():
-        uniq = {h["raw_index"] for h in rec["hits"] if isinstance(h["raw_index"], int) and h["raw_index"] >= 0}
-        rec["logs_scanned"] = max(rec["logs_scanned"], len(uniq))
         s = rec["score"]
         rec["risk_level"] = "high" if s >= high_min else ("medium" if s >= medium_min else "low")
 
     return sorted(patients.values(), key=lambda r: (-r["score"], r["patient_id"]))
 
 def get_patient_risk(patient_id: str) -> Dict[str, Any] | None:
-    """Convenience wrapper: return the single patient’s record (or None)."""
-    results = at_risk_patients()
-    for r in results:
+    """
+    Convenience wrapper: scan patient_data.json (per-patient logs).
+    Falls back to logs.json if you later add a centralized log sink.
+    """
+    # 1) scan per-patient logs
+    res_pd = at_risk_patients(logs_path=_resolve_data_path("patient_data.json"))
+    # 2) optionally also scan centralized logs.json and keep the higher score
+    res_logs = []
+    try:
+        res_logs = at_risk_patients(logs_path=_resolve_data_path("logs.json"))
+    except Exception:
+        pass
+
+    best: Dict[str, Any] | None = None
+    for r in res_pd + res_logs:
         if r["patient_id"] == str(patient_id):
-            return r
-    return None
+            if best is None or r["score"] > best["score"]:
+                best = r
+    return best
+
 
 # --- Nurse Call / Alerts ------------------------------------------------------
 

@@ -24,7 +24,7 @@ def launch_carestaff_dashboard():
         if st.button("Refresh"):
             st.rerun()
     with colB:
-        show = st.selectbox("Show", ["All", "Open", "Acknowledged", "Resolved"], index=0)
+        show = st.selectbox("Show", ["All", "Open", "Acknowledged", "Resolved"], index=1)
     with colC:
         st.caption("Use Acknowledge/Resolve to manage alerts.")
 
@@ -86,7 +86,7 @@ def launch_carestaff_dashboard():
                     st.caption(f"Resolved by {a.get('resolved_by','')} at {a.get('resolved_time','')[:19]} UTC")
 
 
-        # --- Risk Scanner ---
+    # --- Risk Scanner ---
     st.divider()
     st.subheader("Risk Scanner")
 
@@ -103,8 +103,8 @@ def launch_carestaff_dashboard():
         if not patients:
             st.warning("No patients found in data/patient_data.json")
         else:
-            show_cols = ["user_id", "name", "age", "gender"]
-            header_map = {"user_id": "ID", "name": "Name", "age": "Age", "gender": "Gender"}
+            show_cols = ["user_id", "name"]
+            header_map = {"user_id": "ID", "name": "Name"}
             st.dataframe(
                 [{header_map[k]: p.get(k, "") for k in show_cols} for p in patients],
                 hide_index=True, use_container_width=True, height=240
@@ -116,45 +116,55 @@ def launch_carestaff_dashboard():
                 format_func=lambda p: f"{p.get('name','Unknown')} ({p.get('user_id','?')})"
             )
 
+            # ⬇️ Full-width placeholder for results
+            results_area = st.container()
+
             col1, col2, col3 = st.columns([1, 1, 1])
 
             with col1:
                 if st.button("Scan selected patient"):
                     pid = selected_patient.get("user_id")
                     rec = app.utils.get_patient_risk(pid)
-                    if not rec or rec.get("score", 0) == 0:
-                        st.success("No concerning keywords found for this patient.")
-                    else:
-                        st.warning(f"Risk: {rec['risk_level'].upper()}  •  Score: {rec['score']}")
-                        counts_rows = [{"Category": k, "Count": v}
-                                    for k, v in rec["category_counts"].items() if v]
-                        if counts_rows:
-                            st.table(counts_rows)
-                        if rec.get("hits"):
-                            st.write("Matched snippets:")
-                            st.dataframe(
-                                [{"Category": h["category"], "Phrase": h["phrase"], "Snippet": h["snippet"]}
-                                for h in rec["hits"]],
-                                hide_index=True, use_container_width=True, height=260
-                            )
+                    with results_area:  # <-- render outside columns, full width
+                        if not rec or rec.get("score", 0) == 0:
+                            st.success("No concerning keywords found for this patient.")
+                        else:
+                            st.warning(f"Risk: {rec['risk_level'].upper()} • Score: {rec['score']}")
+                            counts_rows = [{"Category": k, "Count": v}
+                                        for k, v in rec["category_counts"].items() if v]
+                            if counts_rows:
+                                # use_container_width makes it stretch
+                                st.dataframe(counts_rows, hide_index=True, use_container_width=True)
+
+                            if rec.get("hits"):
+                                st.write("Matched snippets:")
+                                st.dataframe(
+                                    [{"Category": h["category"], "Phrase": h["phrase"], "Snippet": h["snippet"]}
+                                    for h in rec["hits"]],
+                                    hide_index=True, use_container_width=True, height=300
+                                )
 
             with col2:
                 if st.button("Scan all patients"):
                     results = app.utils.at_risk_patients()
-                    if not results:
-                        st.info("No hits across all patients.")
-                    else:
-                        overview = []
-                        for r in results:
-                            row = {"Patient ID": r["patient_id"], "Risk": r["risk_level"], "Score": r["score"]}
-                            for cat in ("suicidal_or_crisis", "environmental_or_safety", "health_concerns", "emotional_distress"):
-                                row[cat] = r["category_counts"].get(cat, 0)
-                            overview.append(row)
-                        st.dataframe(overview, hide_index=True, use_container_width=True, height=300)
+                    with results_area:  # <-- full width
+                        if not results:
+                            st.info("No hits across all patients.")
+                        else:
+                            # build columns dynamically
+                            all_cats = sorted({c for r in results for c in r["category_counts"].keys()})
+                            overview = []
+                            for r in results:
+                                row = {"Patient ID": r["patient_id"], "Risk": r["risk_level"], "Score": r["score"]}
+                                for cat in all_cats:
+                                    row[cat] = r["category_counts"].get(cat, 0)
+                                overview.append(row)
+                            st.dataframe(overview, hide_index=True, use_container_width=True, height=350)
 
             with col3:
                 if st.button("Close scanner"):
                     st.session_state.show_risk_scanner = False
+
 
 
     # Lets the user view data and logs for a Patient of their choice

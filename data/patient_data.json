@@ -16,7 +16,7 @@
       "role": "Patient",
       "symptoms": "Vomiting, Headaches",
       "preferences": "Must have meat in meals",
-      "logs": [{"Log 1": "Very irritable, staff harrasment"}, {"Log 2": "His condition is worsening"}]
+      "logs": [{"Log 1": "Very irritable, staff harrasment"}, {"Log 2": "His condition is worsening"}, {"Log 3": "want to die, feeling hopeless"}]
     }
   ]
 }

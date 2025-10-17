@@ -2,25 +2,25 @@
   "users": [
     {
       "user_id": "p001",
-      "password": "1234_patient",
+      "password": "patient",
       "name": "Jacob Johnson",
       "role": "Patient"
     },
     {
       "user_id": "p002",
-      "password": "1234_patient",
+      "password": "patient",
       "name": "Joe Jackson",
       "role": "Patient"
     },
     {
       "user_id": "c001",
-      "password": "1234_carestaff",
+      "password": "carestaff",
       "name": "Jordan Jones",
       "role": "CareStaff"
     },
     {
       "user_id": "a001",
-      "password": "1234_admin",
+      "password": "admin",
       "name": "Josh James",
       "role": "Admin"
     }
