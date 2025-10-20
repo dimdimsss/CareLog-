@@ -34,6 +34,36 @@ def launch_admin_dashboard():
             st.warning("No patient data for user ID")
     
 
+    # Add new patient
+    st.subheader("Create new patient")
+
+    with st.form("create_patient_form", clear_on_submit=True):
+        new_id = st.text_input("Patient user ID", placeholder="e.g., p003")
+        new_name = st.text_input("Full name")
+        new_password = st.text_input("Password", value="patient")
+        new_symptoms = st.text_input("Symptoms", "")
+        new_prefs = st.text_input("Preferences", "")
+        create = st.form_submit_button("Create patient")
+
+        if create:
+            if not new_id.strip() or not new_name.strip():
+                st.error("Please provide at least user ID and name.")
+            else:
+                try:
+                    res = app.utils.add_patient(
+                        user_id=new_id.strip(),
+                        password=new_password,
+                        name=new_name.strip(),
+                        symptoms=new_symptoms.strip(),
+                        preferences=new_prefs.strip(),
+                        users_path="users.json",
+                        patient_path="patient_data.json"
+                    )
+                    st.success(f"Created patient {res['patient']['name']} ({res['patient']['user_id']})")
+                    with st.expander("Created records"):
+                        st.json(res)
+                except Exception as e:
+                    st.error(str(e))
 
 
     # Quit function to return to login page. Leave this at the bottom

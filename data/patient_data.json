@@ -7,7 +7,14 @@
       "role": "Patient",
       "symptoms": "Fever",
       "preferences": "Pescatarian",
-      "logs": [{"Log 1": "He is stable for now"}, {"Log 2": "His condition is improving"}]
+      "logs": [
+        {
+          "Log 1": "He is stable for now"
+        },
+        {
+          "Log 2": "His condition is improving"
+        }
+      ]
     },
     {
       "user_id": "p002",
@@ -16,7 +23,24 @@
       "role": "Patient",
       "symptoms": "Vomiting, Headaches",
       "preferences": "Must have meat in meals",
-      "logs": [{"Log 1": "Very irritable, staff harrasment"}, {"Log 2": "His condition is worsening"}, {"Log 3": "want to die, feeling hopeless"}]
+      "logs": [
+        {
+          "Log 1": "Very irritable, staff harrasment"
+        },
+        {
+          "Log 2": "His condition is worsening"
+        },
+        {
+          "Log 3": "want to die, feeling hopeless"
+        }
+      ]
+    },
+    {
+      "user_id": "p003",
+      "name": "Patient Test",
+      "symptoms": "",
+      "preferences": "",
+      "logs": []
     }
   ]
 }

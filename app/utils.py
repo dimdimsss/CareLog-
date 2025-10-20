@@ -63,6 +63,61 @@ def list_patients(data_file: str = "data/patient_data.json") -> List[Dict[str, A
                 rows.append(p)
     return rows
 
+
+def add_patient(
+    user_id: str, password: str, name: str, symptoms: str = "",
+    preferences: str = "", users_path: str = "users.json", patient_path: str = "patient_data.json"
+):
+    """
+    Adds a new patient to users.json and patient_data.json.
+    Raises ValueError if user_id already exists.
+    Returns dict with 'user' and 'patient' keys.
+    """
+    users_fp = _resolve_data_path(users_path)
+    patients_fp = _resolve_data_path(patient_path)
+
+    # Load and update users.json
+    try:
+        users_data = _load_json_abs(users_fp)
+    except Exception:
+        users_data = {"users": []}
+    users_data.setdefault("users", [])
+    if any(u["user_id"] == user_id for u in users_data["users"]):
+        raise ValueError("user_id already exists")
+
+    new_user = {
+        "user_id": user_id,
+        "password": password,
+        "name": name,
+        "role": "patient"
+    }
+    users_data["users"].append(new_user)
+    with open(users_fp, "w", encoding="utf-8") as f:
+        json.dump(users_data, f, ensure_ascii=False, indent=2)
+
+    # Load and update patient_data.json
+    try:
+        patient_data = _load_json_abs(patients_fp)
+    except Exception:
+        patient_data = {"patient_data": []}
+    patient_data.setdefault("patient_data", [])
+
+    new_patient = {
+        "user_id": user_id,
+        "name": name,
+        "symptoms": symptoms,
+        "preferences": preferences,
+        "logs": []
+    }
+    patient_data["patient_data"].append(new_patient)
+    with open(patients_fp, "w", encoding="utf-8") as f:
+        json.dump(patient_data, f, ensure_ascii=False, indent=2)
+
+    return {"user": new_user, "patient": new_patient}
+
+
+
+
 # ---- Keyword scanning core (single place; used by the UI) --------------------
 
 def _compile_phrase_regex(phrase: str) -> re.Pattern:
