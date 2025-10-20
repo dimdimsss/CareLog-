@@ -89,7 +89,7 @@ def add_patient(
         "user_id": user_id,
         "password": password,
         "name": name,
-        "role": "patient"
+        "role": "Patient"
     }
     users_data["users"].append(new_user)
     with open(users_fp, "w", encoding="utf-8") as f:
