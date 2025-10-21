@@ -62,6 +62,15 @@ def launch_patient_dashboard():
                             with st.expander(f"Log {idx}", expanded=False):
                                 st.write(str(log))
 
+
+    st.subheader("New Log?")
+    plog = st.text_input("What are you feeling?")
+    if st.button("Submit"):
+        log_success = app.utils.submit_patient_log(current_patient.user_id,plog)
+        if log_success:
+            st.success("Log successfully added")
+
+    
     # ---------- Nurse Call button ----------
     st.subheader("Need assistance?")
     if st.button("Call Nurse / Request Help", type="primary", use_container_width=True):
