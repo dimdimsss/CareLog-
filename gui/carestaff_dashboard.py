@@ -313,7 +313,43 @@ def launch_carestaff_dashboard():
                 except Exception as e:
                     st.error(str(e))
 
+     #Adds a new patient log 
+    st.subheader("New Patient Log?")
+    pid_log = st.text_input("Please enter the patient ID.", key = "pid_log")
+    plog = st.text_input("What are they feeling today?")  
+    if st.button("Submit new log"):
+        log_success = app.utils.submit_patient_log(pid_log,plog)
+        if log_success:
+            st.success("Log successfully added")
+        else:
+            st.error("Invalid user ID.")
+    
+    #Updates patient preferences
+    st.subheader("Update patient preferences")
+    pid_pref = st.text_input("Please enter the patient ID.", key = "pid_pref")
+    ppreference = st.text_input("Please enter the patient preferences.")
+    if st.button("Update preferences"):
+        preference_success = app.utils.update_patient_preferences(pid_pref,ppreference)
 
+        if preference_success:
+            st.success("Prefernce successfully added.")
+        else:
+            st.error("Invalid user ID.")
+
+    
+    #Updates Clinical notes 
+    st.subheader("Update patient symptoms.")
+    pid_symptoms = st.text_input("Please enter the patient ID.",key = "pid_symptoms")
+    psymptoms = st.text_input("Please enter the patient symptoms.")
+    if st.button("Update symptoms"):
+        symptoms_success = app.utils.update_patient_symptoms(pid_symptoms,psymptoms)
+
+         if symptoms_success:
+            st.success("Symptoms successfully Updated.")
+        else:
+            st.error("Invalid user ID.")
+
+    
     # Quit function to return to login page. Leave this at the bottom
     if st.button("Quit"):
         st.session_state.logged_in = False
