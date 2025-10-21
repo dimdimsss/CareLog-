@@ -66,19 +66,6 @@ def launch_admin_dashboard():
                     st.error(str(e))
 
     
-
-     #Updates patient preferences
-    st.subheader("Update patient preferences")
-    pid_pref = st.text_input("Please enter patient ID.", key = "pid_pref")
-    ppreference = st.text_input("Please enter the patient preferences.")
-    if st.button("Update preferences"):
-        preference_success = app.utils.update_patient_preferences(pid_pref,ppreference)
-
-        if preference_success:
-            st.success("Prefernce successfully added.")
-        else:
-            st.error("Invalid user ID.")
-
     
     # Quit function to return to login page. Leave this at the bottom
     if st.button("Quit"):

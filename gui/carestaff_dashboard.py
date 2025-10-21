@@ -313,18 +313,6 @@ def launch_carestaff_dashboard():
                 except Exception as e:
                     st.error(str(e))
     
-    #Updates patient preferences
-    st.subheader("Update patient preferences")
-    pid_pref = st.text_input("Please enter the patient ID.", key = "pid_pref")
-    ppreference = st.text_input("Please enter the patient preferences.")
-    if st.button("Update preferences"):
-        preference_success = app.utils.update_patient_preferences(pid_pref,ppreference)
-
-        if preference_success:
-            st.success("Prefernce successfully added.")
-        else:
-            st.error("Invalid user ID.")
-
     
     #Updates Symptoms notes 
     st.subheader("Update patient symptoms.")

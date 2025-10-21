@@ -62,13 +62,24 @@ def launch_patient_dashboard():
                             with st.expander(f"Log {idx}", expanded=False):
                                 st.write(str(log))
 
-
+    #Adding another log 
     st.subheader("New Log?")
     plog = st.text_input("What are you feeling?")
     if st.button("Submit"):
         log_success = app.utils.submit_patient_log(current_patient.user_id,plog)
         if log_success:
             st.success("Log successfully added")
+
+     #Updates patient preferences
+    st.subheader("Update patient preferences")
+    ppreference = st.text_input("Please enter your preferences.")
+    if st.button("Update preferences"):
+        preference_success = app.utils.update_patient_preferences(current_patient.user_id,ppreference)
+
+        if preference_success:
+            st.success("Prefernce successfully added.")
+        else:
+            st.error("Invalid user ID.")
 
     
     # ---------- Nurse Call button ----------
