@@ -7,6 +7,7 @@
       "role": "Patient",
       "symptoms": "Fever",
       "preferences": "Pescatarian",
+      "personal_notes":[],
       "logs": [
         {
           "Log 1": "I feel stable for now"
@@ -22,6 +23,7 @@
       "name": "Joe Jackson",
       "role": "Patient",
       "symptoms": "Vomiting, Headaches",
+      "personal_notes":[],
       "preferences": "Must have meat in meals",
       "logs": [
         {
@@ -41,6 +43,7 @@
       "name": "Patient Test",
       "role":"Patient",
       "symptoms": "",
+      "personal_notes":[],
       "preferences": "",
       "logs": []
     }

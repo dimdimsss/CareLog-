@@ -316,7 +316,7 @@ def launch_carestaff_dashboard():
      #Adds a new patient log 
     st.subheader("New Patient Log?")
     pid_log = st.text_input("Please enter the patient ID.", key = "pid_log")
-    plog = st.text_input("What are they feeling today?")  
+    plog = st.text_input("What are they feeling today?", key = "plog")  
     if st.button("Submit new log"):
         log_success = app.utils.submit_patient_log(pid_log,plog)
         if log_success:
@@ -337,7 +337,7 @@ def launch_carestaff_dashboard():
             st.error("Invalid user ID.")
 
     
-    #Updates Clinical notes 
+    #Updates Symptoms notes 
     st.subheader("Update patient symptoms.")
     pid_symptoms = st.text_input("Please enter the patient ID.",key = "pid_symptoms")
     psymptoms = st.text_input("Please enter the patient symptoms.")
@@ -348,6 +348,18 @@ def launch_carestaff_dashboard():
             st.success("Symptoms successfully Updated.")
         else:
             st.error("Invalid user ID.")
+
+    #Update personal notes
+    st.subheader("New Patient Note?")
+    pid_note = st.text_input("Please enter the patient ID.", key = "pid_note")
+    pnote = st.text_input("What are they feeling today?", key = "pnote")  
+    if st.button("Submit new note"):
+        note_success = app.utils.update_patient_personal_note(pid_note,pnote)
+        if note_success:
+            st.success("Note successfully added")
+        else:
+            st.error("Invalid user ID.")
+
 
     
     # Quit function to return to login page. Leave this at the bottom

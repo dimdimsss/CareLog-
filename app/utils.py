@@ -108,6 +108,7 @@ def add_patient(
         "name": name,
         "role": "Patient",
         "symptoms": symptoms,
+        "personal_notes":[],
         "preferences": preferences,
         "logs": []
     }
@@ -487,6 +488,8 @@ def create_staff_alert(
     return alert
 
 
+
+# --- Recording Patient data Functions-----------------------
 def load_all_patients():
     """Loads a Patient by user_id from the json file and returns a Patient object using the corresponding data. Should use patient_data.json"""
     with open("data/patient_data.json", "r") as f:
@@ -547,4 +550,19 @@ def update_patient_symptoms(patient_id, symptoms):
         
     else:
         return False
+    
+
+def update_patient_personal_note(patient_id, personal_note):
+    patient_data = load_all_patients()
+    for p in patient_data:
+        if p.user_id == patient_id:
+            note_num = len(p.personal_notes) + 1
+            note = {f"Log {note_num}":  personal_note}
+            p.personal_notes.append(note)
+            save_patient_data(patient_data)
+            return True
+    
+    else:
+        return False
+
 
