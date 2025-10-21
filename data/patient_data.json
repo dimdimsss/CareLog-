@@ -37,7 +37,9 @@
     },
     {
       "user_id": "p003",
+      "password": "patient",
       "name": "Patient Test",
+      "role":"Patient",
       "symptoms": "",
       "preferences": "",
       "logs": []
