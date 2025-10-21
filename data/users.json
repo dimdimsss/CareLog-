@@ -23,12 +23,6 @@
       "password": "admin",
       "name": "Josh James",
       "role": "Admin"
-    },
-    {
-      "user_id": "p003",
-      "password": "patient",
-      "name": "Patient Test",
-      "role": "Patient"
     }
   ]
 }

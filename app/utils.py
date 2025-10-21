@@ -150,6 +150,42 @@ def add_staff(
 
     return new_user
 
+def remove_patient(user_id: str, users_path: str = "users.json", patient_path: str = "patient_data.json") -> bool:
+    """
+    Removes a patient from users.json and patient_data.json.
+    Returns True if the patient was found and removed, False otherwise.
+    """
+    users_fp = _resolve_data_path(users_path)
+    patients_fp = _resolve_data_path(patient_path)
+
+    # Remove from users.json 
+    try:
+        users_data = _load_json_abs(users_fp)
+        original_users = users_data.get("users", [])
+        updated_users = [u for u in original_users if u.get("user_id") != user_id]
+        
+        if len(original_users) == len(updated_users):
+            return False  # No such user found
+
+        users_data["users"] = updated_users
+        with open(users_fp, "w", encoding="utf-8") as f:
+            json.dump(users_data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        raise RuntimeError(f"Error removing from users.json: {e}")
+
+    # Remove from patient_data.json 
+    try:
+        patient_data = _load_json_abs(patients_fp)
+        original_patients = patient_data.get("patient_data", [])
+        updated_patients = [p for p in original_patients if p.get("user_id") != user_id]
+
+        patient_data["patient_data"] = updated_patients
+        with open(patients_fp, "w", encoding="utf-8") as f:
+            json.dump(patient_data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        raise RuntimeError(f"Error removing from patient_data.json: {e}")
+
+    return True
 
 
 

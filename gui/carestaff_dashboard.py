@@ -289,6 +289,7 @@ def launch_carestaff_dashboard():
                 with st.expander("Alert details"):
                     st.json(alert)  
 
+    # Add new patient
     st.subheader("Create new patient")
 
     with st.form("create_patient_form", clear_on_submit=True):
@@ -319,6 +320,19 @@ def launch_carestaff_dashboard():
                 except Exception as e:
                     st.error(str(e))
     
+    # Remove patient
+    st.subheader("Remove patient")
+    
+    user_id_to_remove = st.text_input("Enter patient ID to remove")
+    if st.button("Remove patient"):
+        try:
+            removed = app.utils.remove_patient(user_id_to_remove.strip())
+            if removed:
+                st.success(f"Patient {user_id_to_remove} removed.")
+            else:
+                st.warning("Patient not found.")
+        except Exception as e:
+            st.error(str(e))
     
     #Updates Symptoms notes 
     st.subheader("Update patient symptoms.")
