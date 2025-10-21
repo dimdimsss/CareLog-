@@ -179,6 +179,7 @@ def launch_carestaff_dashboard():
             st.write(f"Viewing data for patient: {current_patient.name}")
             st.write(f"Symptoms: {current_patient.symptoms}")
             st.write(f"Preferences: {current_patient.preferences}")
+            st.write(f"Staff Notes: {current_patient.personal_notes}")
             
             # --- Logs viewer (safe for dict | list | str) ---
             with st.expander(f"Logs for {current_patient.name}", expanded=False):
