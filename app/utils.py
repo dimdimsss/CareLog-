@@ -187,6 +187,46 @@ def remove_patient(user_id: str, users_path: str = "users.json", patient_path: s
 
     return True
 
+  
+
+def remove_staff(
+    user_id: str,
+    users_path: str = "users.json"
+) -> dict:
+    """
+    Removes a staff user from users.json by user_id.
+    Only removes users with role 'CareStaff' or 'Admin'.
+    Returns dict with 'removed_user' if successful.
+    Raises ValueError if user_id not found or not a staff member.
+    """
+    users_fp = _resolve_data_path(users_path)
+
+    try:
+        users_data = _load_json_abs(users_fp)
+    except Exception:
+        raise ValueError("users.json could not be loaded")
+
+    users_data.setdefault("users", [])
+    removed_user = None
+    updated_users = []
+
+    for user in users_data["users"]:
+        if user["user_id"] == user_id:
+            if user["role"] in ("CareStaff", "Admin"):
+                removed_user = user
+                continue
+            else:
+                raise ValueError(f"user_id '{user_id}' exists but is not a staff member.")
+        updated_users.append(user)
+
+    if not removed_user:
+        raise ValueError(f"Staff user_id '{user_id}' not found.")
+
+    users_data["users"] = updated_users
+    with open(users_fp, "w", encoding="utf-8") as f:
+        json.dump(users_data, f, ensure_ascii=False, indent=2)
+
+    return {"removed_user": removed_user}
 
 
 

@@ -102,7 +102,7 @@ def launch_admin_dashboard():
 
     # Remove patient
     st.subheader("Remove patient")
-    
+
     user_id_to_remove = st.text_input("Enter patient ID to remove")
     if st.button("Remove patient"):
         try:
@@ -113,6 +113,25 @@ def launch_admin_dashboard():
                 st.warning("Patient not found.")
         except Exception as e:
             st.error(str(e))
+
+    # Remove staff
+    st.subheader("Remove staff member")
+
+    staff_id_to_remove = st.text_input("Enter staff user ID to remove")
+
+    if st.button("Remove staff"):
+        try:
+            result = app.utils.remove_staff(staff_id_to_remove.strip())
+            removed_user = result.get("removed_user")
+            if removed_user:
+                st.success(f"Staff member '{removed_user['user_id']}' ({removed_user['role']}) removed successfully.")
+            else:
+                st.warning("Staff member not found or not removed.")
+        except ValueError as ve:
+            st.warning(str(ve))
+        except Exception as e:
+            st.error(f"An unexpected error occurred: {str(e)}")
+
 
 
     
