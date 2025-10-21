@@ -66,18 +66,6 @@ def launch_admin_dashboard():
                     st.error(str(e))
 
     
-        #Updates Patient logs
-    st.subheader("New Patient Log?")
-    pid_log = st.text_input("Please enter the patient ID.", key = "pid_log")
-    plog = st.text_input("What are they feeling today?")  
-    if st.button("next"):
-        log_success = app.utils.submit_patient_log(pid_log,plog)
-        if log_success:
-            st.success("Log successfully added")
-
-        else:
-            st.error("Invalid user ID")
-
 
      #Updates patient preferences
     st.subheader("Update patient preferences")
@@ -88,19 +76,6 @@ def launch_admin_dashboard():
 
         if preference_success:
             st.success("Prefernce successfully added.")
-        else:
-            st.error("Invalid user ID.")
-
-
-    #Updates Clinical notes 
-    st.subheader("Update patient symptoms.")
-    pid_symptoms = st.text_input("Please enter patient ID.", key = "pid_symptoms")
-    psymptoms = st.text_input("Please enter the patient symptoms.")
-    if st.button("Update symptoms"):
-        preference_success = app.utils.update_patient_symptoms(pid_symptoms,psymptoms)
-
-        if preference_success:
-            st.success("Symptoms successfully Updated.")
         else:
             st.error("Invalid user ID.")
 

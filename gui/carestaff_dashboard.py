@@ -312,17 +312,6 @@ def launch_carestaff_dashboard():
                         st.json(res)
                 except Exception as e:
                     st.error(str(e))
-
-     #Adds a new patient log 
-    st.subheader("New Patient Log?")
-    pid_log = st.text_input("Please enter the patient ID.", key = "pid_log")
-    plog = st.text_input("What are they feeling today?", key = "plog")  
-    if st.button("Submit new log"):
-        log_success = app.utils.submit_patient_log(pid_log,plog)
-        if log_success:
-            st.success("Log successfully added")
-        else:
-            st.error("Invalid user ID.")
     
     #Updates patient preferences
     st.subheader("Update patient preferences")
