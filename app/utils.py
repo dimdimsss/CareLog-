@@ -557,7 +557,7 @@ def update_patient_personal_note(patient_id, personal_note):
     for p in patient_data:
         if p.user_id == patient_id:
             note_num = len(p.personal_notes) + 1
-            note = {f"Log {note_num}":  personal_note}
+            note = {f"Note {note_num}":  personal_note}
             p.personal_notes.append(note)
             save_patient_data(patient_data)
             return True

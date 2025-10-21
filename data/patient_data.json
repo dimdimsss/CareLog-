@@ -1,51 +1,58 @@
 {
-  "patient_data": [
-    {
-      "user_id": "p001",
-      "password": "patient",
-      "name": "Jacob Johnson",
-      "role": "Patient",
-      "symptoms": "Fever",
-      "preferences": "Pescatarian",
-      "personal_notes":[],
-      "logs": [
+    "patient_data": [
         {
-          "Log 1": "I feel stable for now"
+            "user_id": "p001",
+            "password": "patient",
+            "name": "Jacob Johnson",
+            "role": "Patient",
+            "symptoms": "sweating",
+            "personal_notes": [
+                {
+                    "note 1": "Patient is distressed "
+                }
+            ],
+            "preferences": "Pescatarian, Early morning appointments ",
+            "logs": [
+                {
+                    "Log 1": "I feel stable for now"
+                },
+                {
+                    "Log 2": "My condition seems to be improving"
+                },
+                {
+                    "Log 3": "testing"
+                }
+            ]
         },
         {
-          "Log 2": "My condition seems to be improving"
+            "user_id": "p002",
+            "password": "patient",
+            "name": "Joe Jackson",
+            "role": "Patient",
+            "symptoms": "Vomiting, Headaches",
+            "personal_notes": [],
+            "preferences": "Must have meat in meals",
+            "logs": [
+                {
+                    "Log 1": "You guys are getting on my nerves"
+                },
+                {
+                    "Log 2": "I feel worse and worse with each hour"
+                },
+                {
+                    "Log 3": "I want to die, I'm feeling hopeless"
+                }
+            ]
+        },
+        {
+            "user_id": "p003",
+            "password": "patient",
+            "name": "Patient Test",
+            "role": "Patient",
+            "symptoms": "",
+            "personal_notes": [],
+            "preferences": "",
+            "logs": []
         }
-      ]
-    },
-    {
-      "user_id": "p002",
-      "password": "patient",
-      "name": "Joe Jackson",
-      "role": "Patient",
-      "symptoms": "Vomiting, Headaches",
-      "personal_notes":[],
-      "preferences": "Must have meat in meals",
-      "logs": [
-        {
-          "Log 1": "You guys are getting on my nerves"
-        },
-        {
-          "Log 2": "I feel worse and worse with each hour"
-        },
-        {
-          "Log 3": "I want to die, I'm feeling hopeless"
-        }
-      ]
-    },
-    {
-      "user_id": "p003",
-      "password": "patient",
-      "name": "Patient Test",
-      "role":"Patient",
-      "symptoms": "",
-      "personal_notes":[],
-      "preferences": "",
-      "logs": []
-    }
-  ]
+    ]
 }
