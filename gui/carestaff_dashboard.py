@@ -344,7 +344,7 @@ def launch_carestaff_dashboard():
     if st.button("Update symptoms"):
         symptoms_success = app.utils.update_patient_symptoms(pid_symptoms,psymptoms)
 
-         if symptoms_success:
+        if symptoms_success:
             st.success("Symptoms successfully Updated.")
         else:
             st.error("Invalid user ID.")
