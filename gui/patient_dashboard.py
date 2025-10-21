@@ -25,6 +25,7 @@ def launch_patient_dashboard():
         if current_patient is not None:
             st.write(f"Symptoms: {current_patient.symptoms}")
             st.write(f"Preferences: {current_patient.preferences}")
+            st.write(f"Staff Notes: {current_patient.personal_notes}")
 
             # SAFE logs viewer (handles dict | list | str)
             with st.expander(f"Logs for {current_patient.name}", expanded=False):
