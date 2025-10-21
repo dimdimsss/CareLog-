@@ -65,7 +65,46 @@ def launch_admin_dashboard():
                 except Exception as e:
                     st.error(str(e))
 
+    
+        #Updates Patient logs
+    st.subheader("New Patient Log?")
+    pid = st.text_input("Please enter the patient ID.")
+    plog = st.text_input("What are they feeling today?")  
+    if st.button("next"):
+        log_success = app.utils.submit_patient_log(pid,plog)
+        if log_success:
+            st.success("Log successfully added")
 
+        else:
+            st.error("Invalid user ID")
+
+
+     #Updates patient preferences
+    st.subheader("Update patient preferences")
+    pid_pref = st.text_input("Please enter patient ID.")
+    ppreference = st.text_input("Please enter the patient preferences.")
+    if st.button("Update preferences"):
+        preference_success = app.utils.update_patient_preferences(pid_pref,ppreference)
+
+        if preference_success:
+            st.success("Prefernce successfully added.")
+        else:
+            st.error("Invalid user ID.")
+
+
+    #Updates Clinical notes 
+    st.subheader("Update patient symptoms.")
+    pid_pref = st.text_input("Please enter patient ID.")
+    psymptoms = st.text_input("Please enter the patient symptoms.")
+    if st.button("Update symptoms"):
+        preference_success = app.utils.update_patient_symptoms(pid_pref,psymptoms)
+
+        if preference_success:
+            st.success("Symptoms successfully Updated.")
+        else:
+            st.error("Invalid user ID.")
+
+    
     # Quit function to return to login page. Leave this at the bottom
     if st.button("Quit"):
         st.session_state.logged_in = False
