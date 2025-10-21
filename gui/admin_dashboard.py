@@ -68,10 +68,10 @@ def launch_admin_dashboard():
     
         #Updates Patient logs
     st.subheader("New Patient Log?")
-    pid = st.text_input("Please enter the patient ID.")
+    pid_log = st.text_input("Please enter the patient ID.", key = "pid_log")
     plog = st.text_input("What are they feeling today?")  
     if st.button("next"):
-        log_success = app.utils.submit_patient_log(pid,plog)
+        log_success = app.utils.submit_patient_log(pid_log,plog)
         if log_success:
             st.success("Log successfully added")
 
@@ -81,7 +81,7 @@ def launch_admin_dashboard():
 
      #Updates patient preferences
     st.subheader("Update patient preferences")
-    pid_pref = st.text_input("Please enter patient ID.")
+    pid_pref = st.text_input("Please enter patient ID.", key = "pid_pref")
     ppreference = st.text_input("Please enter the patient preferences.")
     if st.button("Update preferences"):
         preference_success = app.utils.update_patient_preferences(pid_pref,ppreference)
@@ -94,10 +94,10 @@ def launch_admin_dashboard():
 
     #Updates Clinical notes 
     st.subheader("Update patient symptoms.")
-    pid_pref = st.text_input("Please enter patient ID.")
+    pid_symptoms = st.text_input("Please enter patient ID.", key = "pid_symptoms")
     psymptoms = st.text_input("Please enter the patient symptoms.")
     if st.button("Update symptoms"):
-        preference_success = app.utils.update_patient_symptoms(pid_pref,psymptoms)
+        preference_success = app.utils.update_patient_symptoms(pid_symptoms,psymptoms)
 
         if preference_success:
             st.success("Symptoms successfully Updated.")
