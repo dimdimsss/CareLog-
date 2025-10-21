@@ -483,3 +483,66 @@ def create_staff_alert(
     data["alerts"].append(alert)
     _save_alerts(data)
     return alert
+
+
+def load_all_patients():
+    """Loads a Patient by user_id from the json file and returns a Patient object using the corresponding data. Should use patient_data.json"""
+    with open("data/patient_data.json", "r") as f:
+        data = json.load(f)
+
+        patients = [Patient(**p) for p in data["patient_data"]]
+
+        return patients
+
+
+
+def save_patient_data(patients):
+    """Saves all patient objects back to the JSON file."""
+    data = {"patient_data": [p.__dict__ for p in patients]}
+    with open("data/patient_data.json", "w") as f:
+        json.dump(data, f, indent=4)
+
+
+def submit_patient_log(patient_id, log_info):
+    patient_data = load_all_patients()
+    for p in patient_data:
+        if p.user_id == patient_id:
+            log_num = len(p.logs) + 1
+            log = {f"Log {log_num}":  log_info}
+            p.logs.append(log)
+            save_patient_data(patient_data)
+            return True
+    
+    else:
+        return False
+            
+
+def update_patient_preferences(patient_id, patient_preference):
+    patient_data = load_all_patients()
+    for p in patient_data:
+        if p.user_id == patient_id:
+            if p.preferences != "":
+                previous_preferences = p.preferences
+                p.preferences = f"{previous_preferences}, {patient_preference}"
+            else:
+                p.preferences = f"{patient_preference}"
+            save_patient_data(patient_data)
+            return True
+    
+    else:
+        return False
+
+    
+
+
+def update_patient_symptoms(patient_id, symptoms): 
+    patient_data = load_all_patients()
+    for p in patient_data:
+        if p.user_id == patient_id:
+            p.symptoms = f"{symptoms}"
+            save_patient_data(patient_data)
+            return True 
+        
+    else:
+        return False
+
