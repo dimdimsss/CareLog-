@@ -65,7 +65,37 @@ def launch_admin_dashboard():
                 except Exception as e:
                     st.error(str(e))
 
-    
+
+    # Add new staff member
+    st.subheader("Create new staff member")
+
+    with st.form("create_staff_form", clear_on_submit=True):
+        staff_id = st.text_input("Staff user ID", placeholder="e.g., c002")
+        staff_name = st.text_input("Full name")
+        staff_password = st.text_input("Password", value="carestaff")
+        staff_role = st.selectbox("Role", ["CareStaff", "Admin"])
+        create_staff = st.form_submit_button("Create staff")
+
+        if create_staff:
+            if not staff_id.strip() or not staff_name.strip():
+                st.error("Please provide at least user ID and name.")
+            else:
+                try:
+                    new_staff = app.utils.add_staff(
+                        user_id=staff_id.strip(),
+                        password=staff_password,
+                        name=staff_name.strip(),
+                        role=staff_role,
+                        users_path="users.json" 
+                    )
+                    st.success(f"Created {new_staff['role']} {new_staff['name']} ({new_staff['user_id']})")
+                    with st.expander("Created record"):
+                        st.json(new_staff)
+                except Exception as e:
+                    st.error(str(e))
+
+
+
     
     # Quit function to return to login page. Leave this at the bottom
     if st.button("Quit"):

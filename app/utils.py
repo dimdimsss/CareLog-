@@ -118,6 +118,39 @@ def add_patient(
 
     return {"user": new_user, "patient": new_patient}
 
+def add_staff(
+    user_id: str, password: str, name: str,
+    role: str = "CareStaff", users_path: str = "users.json"
+):
+    """
+    Adds a new staff member to users.json.
+    Raises ValueError if user_id already exists.
+    Returns the created user dict.
+    """
+    users_fp = _resolve_data_path(users_path)
+
+    # Load users
+    try:
+        users_data = _load_json_abs(users_fp)
+    except Exception:
+        users_data = {"users": []}
+    users_data.setdefault("users", [])
+    if any(u["user_id"] == user_id for u in users_data["users"]):
+        raise ValueError("user_id already exists")
+
+    new_user = {
+        "user_id": user_id,
+        "password": password,
+        "name": name,
+        "role": role
+    }
+    users_data["users"].append(new_user)
+    with open(users_fp, "w", encoding="utf-8") as f:
+        json.dump(users_data, f, ensure_ascii=False, indent=2)
+
+    return new_user
+
+
 
 
 
