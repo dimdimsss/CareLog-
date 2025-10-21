@@ -187,7 +187,7 @@ def launch_carestaff_dashboard():
                             st.write(note_content)
             
             # --- Logs viewer (safe for dict | list | str) ---
-            with st.expander(f"Logs for {current_patient.name}", expanded=False):
+            with st.expander(f"Logs from {current_patient.name}", expanded=False):
                 logs = getattr(current_patient, "logs", [])  # falls back to []
                 if not logs:
                     st.info("No logs found for this patient.")
