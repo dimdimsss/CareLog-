@@ -104,7 +104,9 @@ def add_patient(
 
     new_patient = {
         "user_id": user_id,
+        "password": password,
         "name": name,
+        "role": "Patient",
         "symptoms": symptoms,
         "preferences": preferences,
         "logs": []
