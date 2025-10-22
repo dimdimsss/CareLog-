@@ -69,7 +69,7 @@ def launch_patient_dashboard():
         log_success = app.utils.submit_patient_log(current_patient.user_id,plog)
         if log_success:
             st.success("Log successfully added")
-            time.sleep(3)
+            time.sleep(2)
             st.rerun()
         
         else:
@@ -83,7 +83,7 @@ def launch_patient_dashboard():
 
         if preference_success:
             st.success("Prefernce successfully added.")
-            time.sleep(3)
+            time.sleep(2)
             st.rerun()
         else:
             st.error("Please enter a preference.")
@@ -98,7 +98,7 @@ def launch_patient_dashboard():
 
         if preference_success:
             st.success("Prefernce successfully remove.")
-            time.sleep(3)
+            time.sleep(2)
             st.rerun()
             
         else:

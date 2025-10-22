@@ -1,7 +1,7 @@
 import json
 import app
 import streamlit as st
-
+import time
 import os
 import re
 import uuid
@@ -343,6 +343,7 @@ def launch_carestaff_dashboard():
 
         if symptoms_success:
             st.success("Symptoms successfully Updated.")
+            time.sleep(2)
             st.rerun()
         else:
             st.error("Invalid user ID or symptoms are blank.")
@@ -355,6 +356,7 @@ def launch_carestaff_dashboard():
         note_success = app.utils.update_patient_personal_note(pid_note,pnote)
         if note_success:
             st.success("Note successfully added")
+            time.sleep(2)
             st.rerun()
         else:
             st.error("Invalid user ID or note is blank.")
@@ -367,3 +369,4 @@ def launch_carestaff_dashboard():
         st.session_state.current_user = None
         
         st.rerun()
+
