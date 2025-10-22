@@ -83,7 +83,9 @@ def add_patient(
         users_data = {"users": []}
     users_data.setdefault("users", [])
     if any(u["user_id"] == user_id for u in users_data["users"]):
-        raise ValueError("user_id already exists")
+        raise ValueError("Patient User ID already exists")
+    if " " in user_id:
+        raise ValueError("Please don't use spaces in Patient User ID")
 
     new_user = {
         "user_id": user_id,
