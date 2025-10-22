@@ -1,6 +1,7 @@
 import json
 import app
 import streamlit as st
+import time
 import os
 import re
 import uuid
@@ -68,6 +69,7 @@ def launch_patient_dashboard():
         log_success = app.utils.submit_patient_log(current_patient.user_id,plog)
         if log_success:
             st.success("Log successfully added")
+            time.sleep(2)
             st.rerun()
         
         else:
@@ -75,16 +77,32 @@ def launch_patient_dashboard():
 
      #Updates patient preferences
     st.subheader("Update patient preferences")
-    ppreference = st.text_input("Please enter your preferences.")
+    ppreference = st.text_input("Please enter your preferences.", key = "add")
     if st.button("Update preferences"):
         preference_success = app.utils.update_patient_preferences(current_patient.user_id,ppreference)
 
         if preference_success:
             st.success("Prefernce successfully added.")
+            time.sleep(2)
             st.rerun()
         else:
             st.error("Please enter a preference.")
-        
+
+    
+    #removes patient preference
+    st.subheader("Remove patient preferences")
+    pref_list = [s.strip() for s in current_patient.preferences.split(",")]
+    ppreference = st.selectbox("Please select your preferences.",pref_list)
+    if st.button("remove preferences"):
+        preference_success = app.utils.remove_patient_preferences(current_patient.user_id,ppreference)
+
+        if preference_success:
+            st.success("Prefernce successfully remove.")
+            time.sleep(2)
+            st.rerun()
+            
+        else:
+            st.error("Please enter a preference or preference dosen't exist.")
 
 
     

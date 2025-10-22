@@ -651,7 +651,30 @@ def update_patient_preferences(patient_id, patient_preference):
     
     else:
         return False
+    
 
+def remove_patient_preferences(patient_id,remove_preference):
+    if remove_preference == "":
+        return False
+    preference_str = ""
+    patient_data = load_all_patients()
+    for p in patient_data:
+         if p.user_id == patient_id:
+            preferences_list = [s.strip() for s in p.preferences.split(",")]
+            for pl in preferences_list:
+                if remove_preference == pl:
+                    preferences_list.remove(pl)
+                    preference_str = ", ".join(preferences_list)
+
+                    p.preferences = preference_str
+                    save_patient_data(patient_data)
+                    return True 
+                
+    else:
+        return False 
+
+                    
+        
     
 
 
