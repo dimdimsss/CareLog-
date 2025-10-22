@@ -77,7 +77,7 @@ def launch_patient_dashboard():
         preference_success = app.utils.update_patient_preferences(current_patient.user_id,ppreference)
 
         if preference_success:
-            st.success("Prefernce successfully added.")
+            st.success("Preference successfully added.")
         else:
             st.error("Invalid user ID.")
 

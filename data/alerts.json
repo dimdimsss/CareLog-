@@ -37,6 +37,22 @@
       "resolved_by": "Jordan Jones",
       "resolved_time": "2025-10-16T08:24:49.505971+00:00",
       "notes": ""
+    },
+    {
+      "id": "f7eed6f1-700c-441b-836b-dbccc60a05e0",
+      "timestamp": "2025-10-21T23:09:21.883510+00:00",
+      "status": "resolved",
+      "priority": "normal",
+      "source": "patient_dashboard",
+      "patient_id": "p001",
+      "patient_name": "Jacob Johnson",
+      "room": "",
+      "ack_by": null,
+      "ack_time": null,
+      "resolved_by": "Jordan Jones",
+      "resolved_time": "2025-10-21T23:10:08.052144+00:00",
+      "notes": "",
+      "kind": "nurse_call"
     }
   ]
 }
