@@ -75,7 +75,7 @@ def launch_patient_dashboard():
 
      #Updates patient preferences
     st.subheader("Update patient preferences")
-    ppreference = st.text_input("Please enter your preferences.")
+    ppreference = st.text_input("Please enter your preferences.", key = "add")
     if st.button("Update preferences"):
         preference_success = app.utils.update_patient_preferences(current_patient.user_id,ppreference)
 
@@ -84,7 +84,20 @@ def launch_patient_dashboard():
             st.rerun()
         else:
             st.error("Please enter a preference.")
-        
+
+    
+    #removes patient preference
+    st.subheader("Remove patient preferences")
+    ppreference = st.text_input("Please enter your preferences.", key = "remove")
+    if st.button("remove preferences"):
+        preference_success = app.utils.remove_patient_preferences(current_patient.user_id,ppreference)
+
+        if preference_success:
+            st.success("Prefernce successfully remove.")
+            st.rerun()
+            
+        else:
+            st.error("Please enter a preference or preference dosen't exist.")
 
 
     
