@@ -343,8 +343,9 @@ def launch_carestaff_dashboard():
 
         if symptoms_success:
             st.success("Symptoms successfully Updated.")
+            st.rerun()
         else:
-            st.error("Invalid user ID.")
+            st.error("Invalid user ID or symptoms are blank.")
 
     #Update personal notes
     st.subheader("New Patient Note?")
@@ -354,8 +355,9 @@ def launch_carestaff_dashboard():
         note_success = app.utils.update_patient_personal_note(pid_note,pnote)
         if note_success:
             st.success("Note successfully added")
+            st.rerun()
         else:
-            st.error("Invalid user ID.")
+            st.error("Invalid user ID or note is blank.")
 
 
     

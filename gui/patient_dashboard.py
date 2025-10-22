@@ -1,7 +1,6 @@
 import json
 import app
 import streamlit as st
-
 import os
 import re
 import uuid
@@ -69,6 +68,10 @@ def launch_patient_dashboard():
         log_success = app.utils.submit_patient_log(current_patient.user_id,plog)
         if log_success:
             st.success("Log successfully added")
+            st.rerun()
+        
+        else:
+            st.error("Please enter log info.")
 
      #Updates patient preferences
     st.subheader("Update patient preferences")
@@ -78,8 +81,11 @@ def launch_patient_dashboard():
 
         if preference_success:
             st.success("Prefernce successfully added.")
+            st.rerun()
         else:
-            st.error("Invalid user ID.")
+            st.error("Please enter a preference.")
+        
+
 
     
     # ---------- Nurse Call button ----------
