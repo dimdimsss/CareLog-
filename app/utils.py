@@ -618,6 +618,8 @@ def save_patient_data(patients):
 
 
 def submit_patient_log(patient_id, log_info):
+    if log_info == "":
+        return False
     patient_data = load_all_patients()
     for p in patient_data:
         if p.user_id == patient_id:
@@ -632,6 +634,8 @@ def submit_patient_log(patient_id, log_info):
             
 
 def update_patient_preferences(patient_id, patient_preference):
+    if patient_preference == "":
+        return False
     patient_data = load_all_patients()
     for p in patient_data:
         if p.user_id == patient_id:
@@ -650,6 +654,8 @@ def update_patient_preferences(patient_id, patient_preference):
 
 
 def update_patient_symptoms(patient_id, symptoms): 
+    if symptoms == "":
+        return False 
     patient_data = load_all_patients()
     for p in patient_data:
         if p.user_id == patient_id:
@@ -662,6 +668,8 @@ def update_patient_symptoms(patient_id, symptoms):
     
 
 def update_patient_personal_note(patient_id, personal_note):
+    if personal_note == "":
+        return False 
     patient_data = load_all_patients()
     for p in patient_data:
         if p.user_id == patient_id:
