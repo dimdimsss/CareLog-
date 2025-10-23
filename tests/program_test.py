@@ -1,3 +1,4 @@
+# Test file for functions and classes throughout the program
 import pytest
 import app
 
