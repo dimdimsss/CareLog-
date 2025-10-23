@@ -9,7 +9,7 @@ def test_test():
 def test_load_user():
 
 
-    user_object = app.utils.load_user("p001")
+    user_object = app.utils.load_user("p001", "data/users.json")
 
     assert user_object.name == "Jacob Johnson"
     assert user_object.password == "patient"
