@@ -8,7 +8,7 @@
             "symptoms": "sweating",
             "personal_notes": [
                 {
-                    "note 1": "Patient is distressed "
+                    "Note 1": "Patient is distressed "
                 }
             ],
             "preferences": "Pescatarian, Early morning appointments",
@@ -50,6 +50,36 @@
                 },
                 {
                     "Log 3": "I want to die, I'm feeling hopeless"
+                }
+            ]
+        },
+        {
+            "user_id": "test",
+            "password": "test",
+            "name": "Test Patient",
+            "role": "Patient",
+            "symptoms": "test symptoms",
+            "personal_notes": [
+                {
+                    "Note 1": "test note"
+                },
+                {
+                    "Note 2": "test note"
+                },
+                {
+                    "Note 3": "test note"
+                }
+            ],
+            "preferences": "N/A, test pref, test pref, test pref",
+            "logs": [
+                {
+                    "Log 1": "test log1"
+                },
+                {
+                    "Log 2": "test log1"
+                },
+                {
+                    "Log 3": "test log1"
                 }
             ]
         }

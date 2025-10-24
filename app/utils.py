@@ -706,5 +706,3 @@ def update_patient_personal_note(patient_id, personal_note):
     
     else:
         return False
-
-
