@@ -39,7 +39,7 @@ def test1_submit_patient_log():#Postive test case (How the function is submitted
     
     user = app.utils.load_patient("test","data/patient_data.json") # Testing to make sure it was submitted
 
-    assert user.logs[-1][f"Log {len(user.logs)}"] == "test log1"
+    assert user.logs[-1][f"Log {len(user.logs)}"][0] == "test log1"
 
 def test2_submit_patient_log():#Negitive test case when patient forgets to submit log info.
     outcome = app.utils.submit_patient_log("test","")
@@ -147,7 +147,7 @@ def test1_update_personal_note():
 
     user = app.utils.load_patient("test","data/patient_data.json") # Testing to make sure it was submitted
 
-    assert user.personal_notes[-1][f"Note {len(user.personal_notes)}"] == "test note"
+    assert user.personal_notes[-1][f"Note {len(user.personal_notes)}"][0] == "test note"
 
 def test2_update_personal_note():#Testing for no input
     outcome = app.utils.update_patient_personal_note("test","")

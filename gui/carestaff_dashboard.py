@@ -184,19 +184,18 @@ def launch_carestaff_dashboard():
                 for note in current_patient.personal_notes:
                     for note_title, note_content in note.items():
                         with st.expander(note_title, expanded=False):
-                            st.write(note_content)
+                            st.markdown(f"**Note:** {note_content[0]}")
+                            st.markdown(f"**Recorded time:** {note_content[1]}")
             
             # --- Logs viewer (safe for dict | list | str) ---
-            with st.expander(f"Logs from {current_patient.name}", expanded=False):
-                logs = getattr(current_patient, "logs", [])  # falls back to []
+            with st.expander(f"Logs for {current_patient.name}", expanded=False):
+                logs = getattr(current_patient, "logs", [])
                 if not logs:
                     st.info("No logs found for this patient.")
                 else:
                     for idx, log in enumerate(logs, start=1):
-
-                        # Case A: each log is a dict
                         if isinstance(log, dict):
-                            # Prefer {"title": "...", "content": ...} if present
+                            # Prefer {'title':..., 'content':...} shape if present
                             if {"title", "content"} <= set(log.keys()):
                                 title = str(log.get("title") or f"Log {idx}")
                                 with st.expander(title, expanded=False):
@@ -206,15 +205,26 @@ def launch_carestaff_dashboard():
                                     else:
                                         st.write(content)
                             else:
-                                # Generic dict: show each key/value under its own expander
-                                for k, v in log.items():
-                                    with st.expander(str(k), expanded=False):
-                                        if isinstance(v, (dict, list)):
-                                            st.json(v)
-                                        else:
-                                            st.write(v)
+                                for log_title, log_data in log.items():
+                                    with st.expander(str(log_title), expanded=False):
+                                        if isinstance(log_data, (dict, list)):
+                                            message, timestamp = log_data[0], log_data[1]
+                                            st.markdown(f"**Message:** {message}")
+                                            st.markdown(f"**Recorded Time:** {timestamp}")
+                        elif isinstance(log, list):
+                            with st.expander(f"Log {idx}", expanded=False):
+                                for j, item in enumerate(log_data, start=1):
+                                    if isinstance(item, (dict, list)):
+                                        st.markdown(f"**Item {j}**")
+                                        st.json(item)
+                                    else:
+                                        st.write(f"- {item}")
+                        else:
+                            with st.expander(f"Log {idx}", expanded=False):
+                                st.write(str(log))
 
-                        # Case B: each log is a list
+
+                        """# Case B: each log is a list
                         elif isinstance(log, list):
                             with st.expander(f"Log {idx}", expanded=False):
                                 for j, item in enumerate(log, start=1):
@@ -227,7 +237,7 @@ def launch_carestaff_dashboard():
                         # Case C: plain string/number/etc.
                         else:
                             with st.expander(f"Log {idx}", expanded=False):
-                                st.write(str(log))
+                            st.write(str(log))"""
 
 
         else:

@@ -626,7 +626,7 @@ def submit_patient_log(patient_id, log_info):
     for p in patient_data:
         if p.user_id == patient_id:
             log_num = len(p.logs) + 1
-            log = {f"Log {log_num}":  log_info}
+            log = {f"Log {log_num}":  [log_info, datetime.now().strftime("%Y-%m-%d %I:%M %p")]}
             p.logs.append(log)
             save_patient_data(patient_data)
             return True
@@ -699,7 +699,7 @@ def update_patient_personal_note(patient_id, personal_note):
     for p in patient_data:
         if p.user_id == patient_id:
             note_num = len(p.personal_notes) + 1
-            note = {f"Note {note_num}":  personal_note}
+            note = {f"Note {note_num}":  [personal_note,datetime.now().strftime("%Y-%m-%d %I:%M %p")]}
             p.personal_notes.append(note)
             save_patient_data(patient_data)
             return True

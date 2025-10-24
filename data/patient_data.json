@@ -8,28 +8,55 @@
             "symptoms": "sweating",
             "personal_notes": [
                 {
-                    "Note 1": "Patient is distressed "
+                    "Note 1": [
+                        "Patient is distressed",
+                        "2025-10-19 12:25 PM"
+                    ]
                 }
             ],
             "preferences": "Pescatarian, Early morning appointments",
             "logs": [
                 {
-                    "Log 1": "I feel stable for now"
+                    "Log 1": [
+                        "I feel stable for now",
+                        "2025-10-19 12:35 PM"
+                    ]
                 },
                 {
-                    "Log 2": "My condition seems to be improving"
+                    "Log 2": [
+                        "My condition seems to be improving",
+                        "2025-10-20 01:15 PM"
+                    ]
                 },
                 {
-                    "Log 3": "testing"
+                    "Log 3": [
+                        "testing",
+                        "2025-10-21 01:35 AM"
+                    ]
                 },
                 {
-                    "Log 4": "rough"
+                    "Log 4": [
+                        "rough",
+                        "2025-10-22 01:59 PM"
+                    ]
                 },
                 {
-                    "Log 5": "help"
+                    "Log 5": [
+                        "help",
+                        "2025-10-23 02:38 PM"
+                    ]
                 },
                 {
-                    "Log 6": "help"
+                    "Log 6": [
+                        "help",
+                        "2025-10-24 01:35 PM"
+                    ]
+                },
+                {
+                    "Log 7": [
+                        "help 1",
+                        "2025-10-24 01:35 PM"
+                    ]
                 }
             ]
         },
@@ -43,13 +70,22 @@
             "preferences": "Must have meat in meals",
             "logs": [
                 {
-                    "Log 1": "You guys are getting on my nerves"
+                    "Log 1": [
+                        "You guys are getting on my nerves",
+                        "2025-10-19 12:35 PM"
+                    ]
                 },
                 {
-                    "Log 2": "I feel worse and worse with each hour"
+                    "Log 2": [
+                        "I feel worse and worse with each hour",
+                        "2025-10-20 12:35 PM"
+                    ]
                 },
                 {
-                    "Log 3": "I want to die, I'm feeling hopeless"
+                    "Log 3": [
+                        "I want to die, I'm feeling hopeless",
+                        "2025-10-21 12:35 PM"
+                    ]
                 }
             ]
         },
@@ -61,25 +97,31 @@
             "symptoms": "test symptoms",
             "personal_notes": [
                 {
-                    "Note 1": "test note"
+                    "Note 1": [
+                        "test note",
+                        "2025-10-24 02:17 PM"
+                    ]
                 },
                 {
-                    "Note 2": "test note"
-                },
-                {
-                    "Note 3": "test note"
+                    "Note 2": [
+                        "test note",
+                        "2025-10-24 02:17 PM"
+                    ]
                 }
             ],
-            "preferences": "N/A, test pref, test pref, test pref",
+            "preferences": "N/A, test pref, test pref",
             "logs": [
                 {
-                    "Log 1": "test log1"
+                    "Log 1": [
+                        "test log1",
+                        "2025-10-24 02:17 PM"
+                    ]
                 },
                 {
-                    "Log 2": "test log1"
-                },
-                {
-                    "Log 3": "test log1"
+                    "Log 2": [
+                        "test log1",
+                        "2025-10-24 02:17 PM"
+                    ]
                 }
             ]
         }

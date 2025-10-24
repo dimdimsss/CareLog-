@@ -44,15 +44,15 @@ def launch_patient_dashboard():
                                     else:
                                         st.write(content)
                             else:
-                                for k, v in log.items():
-                                    with st.expander(str(k), expanded=False):
-                                        if isinstance(v, (dict, list)):
-                                            st.json(v)
-                                        else:
-                                            st.write(v)
+                                for log_title, log_data in log.items():
+                                    with st.expander(str(log_title), expanded=False):
+                                        if isinstance(log_data, (dict, list)):
+                                            message, timestamp = log_data[0], log_data[1]
+                                            st.markdown(f"**Message:** {message}")
+                                            st.markdown(f"**Recorded Time:** {timestamp}")
                         elif isinstance(log, list):
                             with st.expander(f"Log {idx}", expanded=False):
-                                for j, item in enumerate(log, start=1):
+                                for j, item in enumerate(log_data, start=1):
                                     if isinstance(item, (dict, list)):
                                         st.markdown(f"**Item {j}**")
                                         st.json(item)
