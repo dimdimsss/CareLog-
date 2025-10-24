@@ -76,6 +76,21 @@ def test2_removing_staff(): # Test Failure Value error
 
     assert outcome == None
 
+
+#------------- Getting Patient risk test --------------
+def test_get_pateint_risk():#Chnage ot something meaning full
+    patient_risk = app.utils.get_patient_risk("p001")
+
+    assert patient_risk
+
+
+#------------- Getting Patient risk test --------------
+def test_load_alerts(): #Change to make actally test something 
+    alerts = app.utils._load_alerts()
+
+    assert alerts
+
+
 #------------- Load all patients tests --------------
 def test_load_all_patients():#Tests to see if all data is loaded correctly, tests for 2 user to ensure that it's loading multiple users infomations
     patient_list = app.utils.load_all_patients()

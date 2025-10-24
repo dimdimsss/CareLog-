@@ -350,7 +350,18 @@ def at_risk_patients(
             if not isinstance(p, dict):
                 continue
             pid = str(p.get("user_id") or p.get("id") or p.get("patient_id") or "UNKNOWN")
-            texts = _coerce_logs_to_strings(p.get("logs", []))
+
+            logs_raw = p.get("logs", [])
+            texts = []  # ensure variable is always defined
+
+            for log_entry in logs_raw:
+                if isinstance(log_entry, dict):
+                    for v in log_entry.values():
+                        if isinstance(v, list) and len(v) > 0:
+                            texts.append(str(v[0]))  # only take the log text
+                elif isinstance(log_entry, str):
+                    texts.append(log_entry)
+
             for i, t in enumerate(texts):
                 process_text(pid, t, i)
                 ensure_rec(pid)["logs_scanned"] += 1
