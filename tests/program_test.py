@@ -34,7 +34,44 @@ def test2_load_patient():#Negitive test: Checking to see if the function works w
 
     assert patient_object == None
 
+#------------- Adding patient test --------------
+def test1_adding_patient():#Postive test case for when something is entered correctly
+    app.utils.add_patient("test_id","test_password", "test patient")
+    test = app.utils.load_patient("test_id","data/patient_data.json")
 
+    assert isinstance(test,object)
+
+    assert test.name == "test patient"
+
+    app.utils.remove_patient("test_id")
+
+def test2_adding_patient():#Negitive test case for when something is entered blank
+    app.utils.add_patient("","","")
+    test = app.utils.load_patient("","data/patient_data.json")
+
+    assert isinstance(test,object)
+    assert test.user_id == ""
+
+    app.utils.remove_patient("")
+
+#------------- Adding staff test --------------
+def test1_adding_staff():#Postive test case, checking how the system should react
+    app.utils.add_staff("test_staff_id", "test_staff_password","test_staff")
+    test = app.utils.load_user("test_staff_id", "data/users.json")
+
+    assert isinstance(test,object)
+    assert test.name == "test_staff"
+
+    app.utils.remove_staff("test_staff_id")
+
+def test2_adding_staff():# Negitive test case Checking to see how the system handles empty inputs (Can't happen due to streamlit input validation)
+    app.utils.add_staff("","","")
+    test = app.utils.load_user("","data/users.json")
+
+    assert isinstance(test,object)
+    assert test.name == ""
+
+    app.utils.remove_staff("")
 #------------- List patient test --------------
 def test_list_patients():#Postive test case
     patient_list = app.utils.list_patients()
@@ -65,30 +102,78 @@ def test1_removing_staff(): #Test failure returns dictionary of the removed staf
 
     outcome = app.utils.remove_staff("test_id_staff")
 
-    assert outcome == True
+    assert isinstance(outcome,dict)
 
-    test = app.utils.load_user("test_id_staff")
+    test = app.utils.load_user("test_id_staff", "data/users.json")
 
     assert test == None
+
 
 def test2_removing_staff(): # Test Failure Value error 
     outcome = app.utils.remove_staff("N/A")
 
-    assert outcome == None
+    assert outcome == False
 
 
 #------------- Getting Patient risk test --------------
 def test_get_pateint_risk():#Chnage ot something meaning full
     patient_risk = app.utils.get_patient_risk("p001")
 
-    assert patient_risk
+    assert isinstance(patient_risk,dict)
 
 
-#------------- Getting Patient risk test --------------
+#------------- Getting Alerts for at risk patients test --------------
 def test_load_alerts(): #Change to make actally test something 
     alerts = app.utils._load_alerts()
 
-    assert alerts
+    assert isinstance(alerts,dict)
+
+
+#------------- Create help alert function test --------------
+def test_create_help_alert():#Postive test checks to see function operates as normal
+    test_alert = app.utils.create_help_alert("test", "Test Patient")
+
+    assert isinstance(test_alert,dict)
+
+    alerts = app.utils._load_alerts()
+
+    assert alerts["alerts"][-1]["patient_id"] == "test"
+
+
+#------------- Acknowledge alert test --------------
+def test1_acknowledge_alert():
+    test_alert = app.utils.create_help_alert("test", "Test Patient")
+    app.utils.acknowledge_alert(test_alert["id"])
+
+    alerts = app.utils._load_alerts()["alerts"][-1]
+
+    assert alerts["status"] == "acknowledged" 
+
+def test2_acknowledge_alert():
+    test_alert = app.utils.create_help_alert("","")
+    app.utils.acknowledge_alert(test_alert["id"])
+
+    alerts = app.utils._load_alerts()["alerts"][-1]
+
+    assert alerts["status"] == "acknowledged"
+
+#------------- Resolve alert test --------------
+def test1_resolve_alert():
+    test_alert = app.utils.create_help_alert("test", "Test Patient")
+    app.utils.resolve_alert(test_alert["id"])
+
+    alerts = app.utils._load_alerts()["alerts"][-1]
+
+    assert alerts["status"] == "resolved"
+
+def test2_resolve_alert():
+    test_alert = app.utils.create_help_alert("","")
+    app.utils.resolve_alert(test_alert["id"])
+
+    alerts = app.utils._load_alerts()["alerts"][-1]
+
+    assert alerts["status"] == "resolved"
+
 
 
 #------------- Load all patients tests --------------

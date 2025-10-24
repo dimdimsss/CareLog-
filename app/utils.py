@@ -222,7 +222,9 @@ def remove_staff(
         updated_users.append(user)
 
     if not removed_user:
-        raise ValueError(f"Staff user_id '{user_id}' not found.")
+        return False
+        #raise ValueError(f"Staff user_id '{user_id}' not found.")
+        
 
     users_data["users"] = updated_users
     with open(users_fp, "w", encoding="utf-8") as f:
