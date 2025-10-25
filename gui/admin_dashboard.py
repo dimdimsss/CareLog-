@@ -43,8 +43,13 @@ def launch_admin_dashboard():
     # Add new patient
     st.subheader("Create new patient")
 
+    # Get next available ID
+    next_id = app.utils.get_next_patient_id("users.json")
+
     with st.form("create_patient_form", clear_on_submit=True):
-        new_id = st.text_input("Patient user ID", placeholder="e.g., p003")
+        # Show generated ID, but not editable
+        st.text_input("Patient user ID (auto-assigned)", value=next_id, disabled=True)
+
         new_name = st.text_input("Full name")
         new_password = st.text_input("Password", value="patient")
         new_symptoms = st.text_input("Symptoms", "")
@@ -52,12 +57,12 @@ def launch_admin_dashboard():
         create = st.form_submit_button("Create patient")
 
         if create:
-            if not new_id.strip() or not new_name.strip():
-                st.error("Please provide at least user ID and name.")
+            if not new_name.strip():
+                st.error("Please provide at least a name.")
             else:
                 try:
                     res = app.utils.add_patient(
-                        user_id=new_id.strip(),
+                        user_id=next_id,  # force use of auto ID
                         password=new_password,
                         name=new_name.strip(),
                         symptoms=new_symptoms.strip(),

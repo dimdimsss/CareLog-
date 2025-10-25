@@ -82,7 +82,7 @@ def launch_patient_dashboard():
         preference_success = app.utils.update_patient_preferences(current_patient.user_id,ppreference)
 
         if preference_success:
-            st.success("Prefernce successfully added.")
+            st.success("Preference successfully added.")
             time.sleep(2)
             st.rerun()
         else:
@@ -93,11 +93,11 @@ def launch_patient_dashboard():
     st.subheader("Remove patient preferences")
     pref_list = [s.strip() for s in current_patient.preferences.split(",")]
     ppreference = st.selectbox("Please select your preferences.",pref_list)
-    if st.button("remove preferences"):
+    if st.button("Remove preferences"):
         preference_success = app.utils.remove_patient_preferences(current_patient.user_id,ppreference)
 
         if preference_success:
-            st.success("Prefernce successfully remove.")
+            st.success("Preference successfully removed.")
             time.sleep(2)
             st.rerun()
             

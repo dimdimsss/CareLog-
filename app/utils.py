@@ -64,10 +64,30 @@ def list_patients(data_file: str = "data/patient_data.json") -> List[Dict[str, A
     return rows
 
 
-def add_patient(
-    user_id: str, password: str, name: str, symptoms: str = "",
-    preferences: str = "", users_path: str = "users.json", patient_path: str = "patient_data.json"
-):
+
+def get_next_patient_id(users_path: str = "users.json"):
+    """
+    Returns the next available patient user ID (e.g. p003).
+    """
+    users_fp = _resolve_data_path(users_path)
+    try:
+        users_data = _load_json_abs(users_fp)
+    except Exception:
+        users_data = {"users": []}
+    users_data.setdefault("users", [])
+
+    patient_ids = [
+        int(u["user_id"][1:]) for u in users_data["users"]
+        if isinstance(u.get("user_id"), str)
+        and u["user_id"].startswith("p")
+        and u["user_id"][1:].isdigit()
+    ]
+    next_num = max(patient_ids, default=0) + 1
+    return f"p{next_num:03d}"
+
+
+def add_patient(user_id: str, password: str, name: str, symptoms: str = "",
+    preferences: str = "", users_path: str = "users.json", patient_path: str = "patient_data.json"):
     """
     Adds a new patient to users.json and patient_data.json.
     Raises ValueError if user_id already exists.
