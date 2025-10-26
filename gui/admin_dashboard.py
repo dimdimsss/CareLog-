@@ -135,7 +135,7 @@ def launch_admin_dashboard():
         except ValueError as ve:
             st.warning("Staff not found.")
         except Exception as e:
-            st.error(f"An unexpected error occurred: {str(e)}")
+            st.error(f"Staff not found.")
 
 
 
